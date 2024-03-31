@@ -10,5 +10,7 @@ class AccountMove(models.Model):
 
     def check_change_analytic_distribution(self):
         for rec in self:
-            rec.change_analytic_distribution = self.env.user.has_group(
-                'account_enhancement.group_control_entry_analytic_account')
+            rec.change_analytic_distribution = False
+            if self.env.user.has_group(
+                    'account_enhancement.group_control_entry_analytic_account'):
+                rec.change_analytic_distribution = True

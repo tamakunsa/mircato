@@ -16,6 +16,11 @@ class Employee(models.Model):
     medical_card_expiry_date = fields.Date()
     bank_card_expiry_date = fields.Date()
 
+    arabic_name = fields.Char(string='Arabic Name')
+    iqama_profession = fields.Char(string='Iqama Profession')
+    expiry_date = fields.Date(string='Expiry Date')
+    sponsor_name = fields.Many2one(comodel_name='employee.sponsor', string='Sponsor Name')
+
 
 class HrEmployeesPublic(models.Model):
     _inherit = 'hr.employee.public'
@@ -30,3 +35,8 @@ class HrEmployeesPublic(models.Model):
     medical_card_number = fields.Char()
     medical_card_expiry_date = fields.Date()
     bank_card_expiry_date = fields.Date()
+
+    arabic_name = fields.Char(string='Arabic Name')
+    iqama_profession = fields.Char(string='Iqama Profession')
+    expiry_date = fields.Date(string='Expiry Date')
+    sponsor_name = fields.Many2one(comodel_name='employee.sponsor', string='Sponsor Name')

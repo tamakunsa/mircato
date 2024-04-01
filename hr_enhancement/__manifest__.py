@@ -20,5 +20,6 @@
         'views/hr_probation_period_view.xml',
         'wizard/back_to_work_wiz_vew.xml',
         'reports/employee_request_document_report.xml',
+        'views/employee_sponsor_view.xml',
     ],
 }

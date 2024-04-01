@@ -20,9 +20,22 @@
                     <field name="medical_card_number"/>
                     <field name="medical_card_expiry_date"/>
                 </group>
+                <group string="Iqama/Bitaqa Details">
+                    <field name="iqama_profession"/>
+                    <field name="expiry_date"/>
+                </group>
+                <group string="Sponsor Details">
+                    <field name="sponsor_name"/>
+                </group>
             </xpath>
             <xpath expr="//field[@name='bank_account_id']" position="after">
                 <field name="bank_card_expiry_date"/>
+            </xpath>
+            <xpath expr="//h1" position="after">
+                <h1>
+                    <field name="arabic_name" placeholder="Employee's Arabic Name" required="True"
+                           style="font-size: min(4vw, 2.6rem);"/>
+                </h1>
             </xpath>
         </field>
     </record>

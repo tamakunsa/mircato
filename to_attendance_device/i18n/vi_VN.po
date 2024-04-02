@@ -1,0 +1,2557 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* to_attendance_device
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 15.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-25 03:44+0000\n"
+"PO-Revision-Date: 2022-05-25 03:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: to_attendance_device
+#: model:mail.template,body_html:to_attendance_device.email_template_unknown_attendance_status_code
+msgid ""
+"\n"
+"                <div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                    <p>Hello <t t-out=\"object.user_id.partner_id.name or ''\"/>,</p>\n"
+"                    <p>The system tried to download attendance data from the machine <t t-out=\"object.name\"/> but failed.</p>\n"
+"                    <p>We found an unknown attendance status code <t t-out=\"ctx.get('code')\"/> from your machine <t t-out=\"ctx.get('machine_name')\"/> but no such code found in the machine's settings in the system. </p>\n"
+"                    <p>Please check it again in your machine <t t-out=\"ctx.get('machine_name')\"/> and add that attendance code to the setting. In case you want to ignore to load attendance data with this code, go to the machine setting in the system and check 'Ignore Unknown Code'.</p>\n"
+"                    <p>Best Regard,</p>\n"
+"                </div>\n"
+"                \n"
+"            "
+msgstr ""
+"\n"
+"                <div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"                    <p>Xin chào <t t-out=\"object.user_id.partner_id.name or ''\"/>,</p>\n"
+"                    <p>Hệ thống đã cố tải dữ liệu vào/ra từ máy chấm công <t t-out=\"object.name\"/> nhưng không thành công.</p>\n"
+"                    <p>Chúng tôi đã tìm thấy một mã trạng thái <t t-out=\"ctx.get('code')\"/> từ máy <t t-out=\"ctx.get('machine_name')\"/> của bạn nhưng chưa được khai báo ở thiết lập kỹ thuật của máy trong hệ thống. </p>\n"
+"                    <p>Vui lòng kiểm tra lại mã này trên máy <t t-out=\"ctx.get('machine_name')\"/> và bổ sung nó vào bảng khai báo mã trạng thái trong thiết lập trên. Nếu bạn muốn bỏ qua các mã kiểu này khi tải dữ liệu vào/ra, hãy vào thiết lập kỹ thuật máy chấm công và đánh dấu vào lựa chọn 'Bỏ qua Mã chưa biết'.</p>\n"
+"                    <p>Trân trọng,</p>\n"
+"                </div>\n"
+"                \n"
+"            "
+
+#. module: to_attendance_device
+#: model:mail.template,body_html:to_attendance_device.email_template_not_safe_to_clear_attendance
+msgid ""
+"\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hello <t t-out=\"object.user_id.partner_id.name or ''\"/>,</p>\n"
+"\n"
+"    <p>The system tried to delete attendance data from the machine <t t-out=\"object.name\"/> but it did not find safe condition to delete since the whole data was not downloaded from the machine into the system.</p>\n"
+"    <p>Please also ensure that all the machine users have been mapped with System's employees. Otherwise, it is also not safe for attendance data deletion</p>\n"
+"    <p>Please check and troubleshoot.</p>\n"
+"    <p>In a case, users are checking in/out while the system is downloading data, this message could appear. In such the case, you can ignore this message.</p>\n"
+"\n"
+"    <p>Best Regard,</p>\n"
+"\n"
+"</div>\n"
+"            "
+msgstr ""
+"\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Xin chào <t t-out=\"object.user_id.partner_id.name or ''\"/>,</p>\n"
+"    \n"
+"    <p>Hệ thống đã cố xoá dữ liệu vào/ra từ máy chấm công <t t-out=\"object.name\"/> nhưng việc này đã không được thực hiện do các dữ liệu này chưa được tải về cơ sở dữ liệu hệ thống.</p>\n"
+"    <p>Hãy chắc chắn rằng tất cả Người dùng Thiết bị đã được khớp với Nhân viên trong hệ thống. Nếu không, việc xoá toàn bộ dữ liệu vào/ra trên máy chấm công có thể dẫn đến mất mát dữ liệu mà không phục hồi lại được.</p>\n"
+"    <p>Vui lòng kiểm tra và khắc phục.</p>\n"
+"    <p>Trong một số trường hợp, hệ thống có thể tải dữ liệu trong khi người dùng đang đăng nhập/đăng xuất ở máy chấm công, khi đó thông báo này cũng có thể xuất hiện. Trong trường hợp như vậy thì bạn có thể bỏ qua thông báo này.</p>\n"
+"    \n"
+"    <p>Trân trọng,</p>\n"
+"\n"
+"</div>\n"
+"            "
+
+#. module: to_attendance_device
+#: model:mail.template,body_html:to_attendance_device.email_template_attendance_device
+msgid ""
+"\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Hello <t t-out=\"object.user_id.partner_id.name or ''\"/>,</p>\n"
+"\n"
+"    <p>There are some problems with attendance machine: <t t-out=\"object.name\"/>. </p>\n"
+"\n"
+"    <p>Please check and troubleshoot.</p>\n"
+"\n"
+"    <p>Best Regard,</p>\n"
+"\n"
+"</div>\n"
+"            "
+msgstr ""
+"\n"
+"<div style=\"font-family: 'Lucida Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; \">\n"
+"\n"
+"    <p>Xin chào <t t-out=\"object.user_id.partner_id.name or ''\"/>,</p>\n"
+"    \n"
+"    <p>Có một số vấn đề đối với máy chấm công: <t t-out=\"object.name\"/>. </p>\n"
+"    \n"
+"    <p>Vui lòng kiểm tra và khắc phục.</p>\n"
+"    \n"
+"    <p>Trân trọng,</p>\n"
+"\n"
+"</div>\n"
+"            "
+
+#. module: to_attendance_device
+#: model:mail.template,body_html:to_attendance_device.email_template_error_get_attendance
+msgid ""
+"\n"
+"<div>\n"
+"    <p>Hello <t t-out=\"object.user_id.partner_id.name or ''\"/>,</p>\n"
+"    <p>The system tried to download attendance data from the machine <t t-out=\"object.name\"/> but failed.</p>\n"
+"    <p>NOTE:</p>\n"
+"    <p>The machine might not return its whole attendance data when requested which could cause this error.</p>\n"
+"    <p>If such the case, please disconnect the machine from the system then download the data with another mean from your local network. After that, reconnect the machine with the system and continue the data synchronization</p>\n"
+"    <p>Best Regard,</p>\n"
+"</div>\n"
+"            "
+msgstr ""
+"\n"
+"<div>\n"
+"    <p>Xin chào <t t-out=\"object.user_id.partner_id.name or ''\"/>,</p>\n"
+"    <p>Hệ thống đã cố tải dữ liệu vào/ra từ máy chấm công <t t-out=\"object.name\"/> nhưng không thành công.</p>\n"
+"    <p>CHÚ Ý:</p>\n"
+"    <p>Máy chấm công có thể đã không trả về toàn bộ dữ liệu vào/ra khi được yêu cầu, điều đó có thể tạo ra thông báo này.</p>\n"
+"    <p>Trong trường hợp như vậy, vui lòng ngắt kết nối máy chấm công khỏi hệ thống và tải lại dữ liệu vào/ra bằng một ứng dụng khác. Sau đó, hãy kết nối lại máy chấm công, xoá hết dữ liệu vào/ra và thực hiện đồng bộ.</p>\n"
+"    <p>Trân trọng,</p>\n"
+"</div>\n"
+"            "
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"\n"
+"Data that caused the error: %s"
+msgstr ""
+"\n"
+"Dữ liệu gây ra lỗi: %s"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_TCP__1024
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_UDP__1024
+msgid "1024 bytes"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_TCP__16384
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_UDP__16384
+msgid "16384 bytes"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_TCP__2048
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_UDP__2048
+msgid "2048 bytes"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_TCP__32768
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_UDP__32768
+msgid "32768 bytes"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_TCP__4096
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_UDP__4096
+msgid "4096 bytes"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_TCP__65472
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_UDP__65472
+msgid "65472 bytes"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_TCP__8192
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__max_size_UDP__8192
+msgid "8192 bytes"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_needaction
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_needaction
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_needaction
+msgid "Action Needed"
+msgstr "Hành động cần thiết"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__active
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__active
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__active
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__active
+msgid "Active"
+msgstr "Hiệu lực"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__activity_ids
+msgid "Activities"
+msgstr "Các hoạt động"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__activity_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__activity_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__activity_id
+msgid "Activity"
+msgstr "Hoạt động"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__activity_exception_decoration
+msgid "Activity Exception Decoration"
+msgstr "Trang trí ngoại lệ cho hoạt động"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__activity_state
+msgid "Activity State"
+msgstr "Trạng thái Hoạt động"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__type
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__type
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__type
+msgid "Activity Type"
+msgstr "Kiểu Hoạt động"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__activity_type_icon
+msgid "Activity Type Icon"
+msgstr "Biểu tượng loại hoạt động"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__map_before_dl
+msgid ""
+"Always try to map users and employees (if any new found) before downloading "
+"attendance data."
+msgstr ""
+"Luôn thực hiện việc khớp Người dùng Thiết bị ở máy chấm công với Nhân viên "
+"trên hệ thống (nếu tìm thấy) trước khi tải về dữ liệu vào/ra."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_state_line__code
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__code
+msgid "An integer to express the state code"
+msgstr "Một số nguyên để biểu thị mã trạng thái"
+
+#. module: to_attendance_device
+#: model:mail.template,name:to_attendance_device.email_template_unknown_attendance_status_code
+msgid "An unknown attendance status code was found - Sent by Email"
+msgstr "Có một mã trạng thái chưa được khai báo - Được gửi bằng email"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_device_user_form_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_state_form_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "Archived"
+msgstr "Lưu trữ"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Are you sure to restart the machine: %s?"
+msgstr "Bạn có chắc chắn muốn khởi động lại máy chấm công: %s không?"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_attachment_count
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_attachment_count
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_attachment_count
+msgid "Attachment Count"
+msgstr "Số lượng đính kèm"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_hr_attendance
+msgid "Attendance"
+msgstr "Vào/Ra"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_activity_tree_view
+msgid "Attendance Activities"
+msgstr "Hoạt động Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.actions.act_window,name:to_attendance_device.attendance_activity_tree_action
+#: model:ir.model,name:to_attendance_device.model_attendance_activity
+#: model:ir.model.fields,field_description:to_attendance_device.field_hr_attendance__activity_id
+#: model:ir.ui.menu,name:to_attendance_device.attendance_activity_menu
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_activity_form_view
+msgid "Attendance Activity"
+msgstr "Hoạt động Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.actions.act_window,name:to_attendance_device.action_user_attendance_data
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__user_attendance_ids
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__attendance_ids
+#: model:ir.ui.menu,name:to_attendance_device.user_attendance_data_menu
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_device_user_form_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_attendance_data_form
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_attendance_data_pivot
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_attendance_data_tree
+msgid "Attendance Data"
+msgstr "Dữ liệu Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__device_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__device_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__device_id
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "Attendance Machine"
+msgstr "Máy Chấm công"
+
+#. module: to_attendance_device
+#: model:mail.template,name:to_attendance_device.email_template_attendance_device
+msgid "Attendance Machine - Send by Email"
+msgstr "Máy chấm công - Được gửi bằng email"
+
+#. module: to_attendance_device
+#: model:mail.template,subject:to_attendance_device.email_template_attendance_device
+msgid "Attendance Machine Connection Problem (Ref {{ object.name or 'n/a' }})"
+msgstr "Lỗi kết nối máy chấm công (Tham chiếu: {{object.name or 'n/a' }})"
+
+#. module: to_attendance_device
+#: model:res.groups,name:to_attendance_device.group_attendance_devices_manager
+msgid "Attendance Machine Manager"
+msgstr "Quản lý Máy Chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_attendance_device_state_line
+msgid "Attendance Machine State"
+msgstr "Trạng thái Vào/Ra ở máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_attendance_device_user
+msgid "Attendance Machine User"
+msgstr "Người dùng Odoo"
+
+#. module: to_attendance_device
+#: model:ir.ui.menu,name:to_attendance_device.attendace_device_menu
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_state_form_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_tree
+msgid "Attendance Machines"
+msgstr "Máy Chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__total_att_records
+msgid "Attendance Records"
+msgstr "SL Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_attendance_state
+msgid "Attendance State"
+msgstr "Trạng thái Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.actions.act_window,name:to_attendance_device.attendance_state_tree_action
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity__attendance_status_ids
+#: model:ir.ui.menu,name:to_attendance_device.attendance_state_menu
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_state_tree_view
+msgid "Attendance Status"
+msgstr "Trạng thái Vào/Ra"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "Attendance Status Codes"
+msgstr "Mã Trạng thái Vào/Ra"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/user_attendance.py:0
+#, python-format
+msgid ""
+"Attendance Status conflict! The status number from machine must match the "
+"attendance status defined in Odoo."
+msgstr ""
+"Xung đột Trạng thái Vào/Ra! Mã số trạng thái từ máy chấm công phải khớp với "
+"mã số trạng thái được định nghĩa trong Odoo."
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_activity_form_view
+msgid "Attendance Statuses"
+msgstr "Mã Trạng thái"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_state_line__activity_id
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__activity_id
+#: model:ir.model.fields,help:to_attendance_device.field_user_attendance__activity_id
+msgid "Attendance activity, e.g. Normal Working, Overtime, etc"
+msgstr "Hoạt động Vào/Ra. Vd: Làm việc bình thường, Tăng ca, v.v."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__auto_clear_attendance_hour
+msgid "Auto Clear At"
+msgstr "Tự động Xoá vào lúc"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__auto_clear_attendance
+msgid "Auto Clear Attendance Data"
+msgstr "Tự động Xoá dữ liệu Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__auto_clear_attendance_error_notif
+msgid "Auto Clear Attendance Notif."
+msgstr "Thông báo Xóa tự động Dữ liệu Vào/Ra."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__auto_clear_attendance_dow
+msgid "Auto Clear On"
+msgstr "Tự động Xoá Vào"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__auto_clear_attendance_schedule
+msgid "Auto Clear Schedule"
+msgstr "Lịch Xoá Tự động"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.device_confirm_wizard_view_form
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.wizard_form_view
+msgid "Cancel"
+msgstr "Hủy"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__state__cancelled
+msgid "Cancelled"
+msgstr "Đã hủy"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "Check connection"
+msgstr "Kiểm tra kết nối"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__auto_clear_attendance
+msgid ""
+"Check this to clear all machine attendance data after download into Odoo"
+msgstr ""
+"Đánh dấu trường này để tự động xoá toàn bộ dữ liệu Vào/Ra trong máy chấm "
+"công sau mỗi lần tải về về Odoo"
+
+#. module: to_attendance_device
+#: model:attendance.state,name:to_attendance_device.attendance_device_state_code_0
+#: model:attendance.state,name:to_attendance_device.attendance_device_state_code_4
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_state__type__checkin
+msgid "Check-in"
+msgstr "Đăng nhập"
+
+#. module: to_attendance_device
+#: model:attendance.state,name:to_attendance_device.attendance_device_state_code_1
+#: model:attendance.state,name:to_attendance_device.attendance_device_state_code_5
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_state__type__checkout
+msgid "Check-out"
+msgstr "Đăng xuất"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_hr_attendance__checkin_device_id
+msgid "Checkin Device"
+msgstr "Thiết bị Đăng nhập"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_hr_attendance__checkout_device_id
+msgid "Checkout Device"
+msgstr "Thiết bị Đăng xuất"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#: model:ir.actions.server,name:to_attendance_device.action_server_clear_attendance_data
+#, python-format
+msgid "Clear Attendance Data"
+msgstr "Xoá Dữ liệu Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__code
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__code
+msgid "Code Number"
+msgstr "Mã số"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__company_id
+msgid "Company"
+msgstr "Công ty"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__content
+msgid "Confirmation content"
+msgstr "Xác nhận"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__state__confirmed
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_attendance_device_filter
+msgid "Confirmed"
+msgstr "Xác nhận"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Connect to the machine %s successfully!"
+msgstr "Kết nối thành công đến máy chấm công %s!"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Connection Unauthorized! The machine %s may require password."
+msgstr "Kết nối trái phép! Máy chấm công %s có thể yêu cầu mật khẩu"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Could not clear all data from the machine %s"
+msgstr "Không thể xoá hết dữ liệu từ máy chấm công %s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not clear attendance data from the machine %s. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể xóa dữ liệu Vào/Ra trên máy chấm công %s. Đây là thông tin gỡ lỗi:\n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not connect to the machine %s.\n"
+"Debugging info: %s"
+msgstr ""
+"Không thể kết nối với máy chấm công %s.\n"
+"Đây là thông tin gỡ lỗi: %s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not delete finger template with fid '%s' of uid '%s' from the machine "
+"%s"
+msgstr ""
+"Không thể xóa mẫu vân tay với fid là \"%s\" của người dùng có uid là \"%s\" "
+"(trong máy chấm công %s)"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not delete the user with uid '%s', user_id '%s' from the device %s\n"
+"%s"
+msgstr ""
+"Không thể xoá người dùng có uid: \"%s\" và user_id: \"%s\" từ máy chấm công %s\n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Could not get attendance data from the machine %s"
+msgstr "Không thể lấy dữ liệu vào/ra từ máy chấm công %s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get connected to the machine %s. This is usually due to either the network error or wrong protocol selection or password authentication is required.\n"
+"Debugging info:\n"
+"%s"
+msgstr ""
+"Không thể kết nối với máy chấm công %s. Có thể do lỗi mạng; sai giao thức hoặc sai mật khẩu. \n"
+"Đây là thông tin gỡ lỗi: \n"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get connected to the machine '%s'. Please check your network configuration and machine password and/or hard restart your machine.\n"
+"Debugging info: %s"
+msgstr ""
+"Không kết nối được với máy chấm công '%s'. Vui lòng kiểm tra kết nối mạng, mật khẩu và/hoặc khởi động (vật lý) lại máy.\n"
+"Đây là thông tin gỡ lỗi: %s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get finger templates from the machine %s\n"
+"If you had connected to your machine, perhaps your machine had problem. Some bad machines allowed duplicated uid may cause such problem. In such case, if you still want to load users from those bad machines, please uncheck Data Acknowledge field.\n"
+"Here is the debugging error message:\n"
+"%s"
+msgstr ""
+"Không thể tải mẫu vân tay từ máy chấm công %s \n"
+"Nếu kết nối đã được thiết lập, có thể máy chấm công đã gặp sự cố. Có một số máy cho phép trùng lặp uid và điều đó có thể gây ra sự cố như vậy. Trong trường hợp này, nếu bạn vẫn muốn tải Người dùng Thiết bị từ máy lên Odoo, vui lòng bỏ chọn trường Xác nhận dữ liệu. \n"
+" Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get max uid from the machine %s\n"
+"If you had connected to your machine, perhaps your machine had problem.\n"
+"Here is the debugging error message:\n"
+"%s"
+msgstr ""
+"Không thể lấy uid từ máy chấm công %s \n"
+"Nếu kết nối đến máy chấm công đã được thiết lập, có lẽ thiết bị của bạn đã gặp sự cố. \n"
+"Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the Fingerprint Algorithm of the machine %s. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể lấy Thuật toán vân tay từ máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the Name of the machine %s. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể lấy Tên của máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the OEM Vendor of the machine %s. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể lấy OEM của nhà cung cấp máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the Work Code of the machine %s. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể lấy Work Code của máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the firmware version of the machine %s. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể lấy phiên bản firmware của máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the machine %s disabled. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể vô hiệu hóa máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the machine %s disconnected. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể ngắt kết nối máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the machine %s enabled. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể kích hoạt máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the platform of the machine %s. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể lấy được thông tin Platform của máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get the serial number of the machine %s. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể lấy số sê-ri của máy chấm công %s. Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get time from the machine %s\n"
+"Here is the debugging error message:\n"
+"%s"
+msgstr ""
+"Không thể lấy được thời gian từ máy chấm công %s \n"
+"Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not get users from the machine %s\n"
+"If you had connected to your machine, perhaps your machine had problem. Some bad machines allowed duplicated uid may cause such problem. In such case, if you still want to load users from those bad machines, please uncheck Data Acknowledge field.\n"
+"Here is the debugging error message:\n"
+"%s"
+msgstr ""
+"Không thể tải Người dùng Thiết bị từ máy chấm công %s \n"
+"Nếu kết nối đã được thiết lập, có thể máy chấm công đã gặp sự cố. Có một số máy cho phép trùng lặp uid và điều đó có thể gây ra sự cố như vậy. Trong trường hợp này, nếu bạn vẫn muốn tải Người dùng Thiết bị từ máy chấm công lên Odoo, vui lòng bỏ chọn trường Xác nhận dữ liệu. \n"
+" Đây là thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not restart the machine %s. Here is the debugging information:\n"
+"%s"
+msgstr ""
+"Không thể khởi động lại máy chấm công %s. Đây là thông tin gỡ lỗi:\n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not set finger template into the machine %s. Here are the information:\n"
+"user_id: %s\n"
+"Debugging information:\n"
+"%s"
+msgstr ""
+"Không thể tạo mới mẫu vân tay cho Người dùng Thiết bị trên máy chấm công % s. Đây là thông tin gỡ lỗi: \n"
+"user_id: %s \n"
+"Thông tin gỡ lỗi: \n"
+"%s"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Could not set user into the machine %s. Here is the user information:\n"
+"uid: %s\n"
+"name: %s\n"
+"privilege: %s\n"
+"password: %s\n"
+"group_id: %s\n"
+"user_id: %s\n"
+"Here is the debugging information:\n"
+"%s\n"
+msgstr ""
+"Không thể tạo mới Người dùng Thiết bị cho máy chấm công %s. Thông tin Người dùng: \n"
+"uid: %s \n"
+"tên: %s \n"
+"đặc quyền: %s \n"
+"mật khẩu: %s \n"
+"group_id: %s \n"
+"user_id: %s \n"
+"Đây là thông tin gỡ lỗi: \n"
+"%s\n"
+
+#. module: to_attendance_device
+#: model_terms:ir.actions.act_window,help:to_attendance_device.attendance_device_list_action
+msgid "Create the first attendance machine"
+msgstr "Tạo máy chấm công đầu tiên"
+
+#. module: to_attendance_device
+#: model_terms:ir.actions.act_window,help:to_attendance_device.attendance_activity_tree_action
+#: model_terms:ir.actions.act_window,help:to_attendance_device.attendance_state_tree_action
+msgid "Create the first attendance status"
+msgstr "Tạo tình trạng Vào/Ra đầu tiên"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__create_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__create_uid
+msgid "Created by"
+msgstr "Được tạo bởi"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_hr_employee__created_from_attendance_device
+msgid "Created from Device"
+msgstr "Được tạo từ máy chấm công"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_employee_filter
+msgid "Created from an Attendance Machine"
+msgstr "Được tạo từ máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__create_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__create_date
+msgid "Created on"
+msgstr "Thời điểm tạo"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__attendance_id
+msgid "Current Attendance"
+msgstr "Hoạt động Hiện tại"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__debug_message
+msgid "Debug Message"
+msgstr "Thông điệp Gỡ lỗi"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__del_user
+msgid "Delete In Machine?"
+msgstr "Xóa trên máy?"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__description
+msgid "Description"
+msgstr "Miêu tả"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__device_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line__device_id
+msgid "Device"
+msgstr "Máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard__device_ids
+msgid "Devices"
+msgstr "Máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__display_name
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__display_name
+msgid "Display Name"
+msgstr "Tên hiển thị"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "Download Attendance"
+msgstr "Tải dữ liệu Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.action_server_fetch_attendance_data
+msgid "Download Attendance Data"
+msgstr "Tải dữ liệu Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__download_error_notification
+msgid "Download Error Notification"
+msgstr "Thông báo lỗi Tải dữ liệu"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.action_server_finger_template_download
+msgid "Download Fingerprints"
+msgstr "Tải về Mẫu Vân tay"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Download Fingerprints From Machine"
+msgstr "Tải về Mẫu Vân tay từ máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.action_server_user_download
+msgid "Download Users"
+msgstr "Tải về Người dùng"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Download Users From Machine"
+msgstr "Tải về Người dùng Thiết bị từ máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.ir_cron_scheduler_download_attendance_ir_actions_server
+#: model:ir.cron,cron_name:to_attendance_device.ir_cron_scheduler_download_attendance
+#: model:ir.cron,name:to_attendance_device.ir_cron_scheduler_download_attendance
+msgid "Download attendances scheduler"
+msgstr "Tải về Dữ liệu Chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__state__draft
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_attendance_device_filter
+msgid "Draft"
+msgstr "Dự thảo"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_hr_employee
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__employee_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__employee_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__employee_id
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_attendance_data_search_view
+msgid "Employee"
+msgstr "Nhân viên"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_employee_upload_line
+msgid "Employee Upload Details"
+msgstr "Chi tiết Tải lên của Nhân viên"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_employee_upload_wizard
+msgid "Employee Upload Wizard"
+msgstr "Đồ thuật Upload Nhân viên"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "Employees"
+msgstr "Nhân viên"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line__employee_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard__employee_ids
+msgid "Employees to upload"
+msgstr "Nhân viên để upload"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__download_error_notification
+msgid "Enable this to get notified when data download error occurs."
+msgstr ""
+"Kích hoạt trường này để nhận thông báo khi xảy ra lỗi download dữ liệu."
+
+#. module: to_attendance_device
+#: model:mail.template,subject:to_attendance_device.email_template_error_get_attendance
+msgid "Error Downloading Attendance Data (Ref {{ object.name }})"
+msgstr "Lỗi download dữ liệu Vào/Ra (Tham chiếu: {{object.name}})"
+
+#. module: to_attendance_device
+#: model:mail.template,name:to_attendance_device.email_template_error_get_attendance
+msgid "Error Downloading Attendance Data - Send by Email"
+msgstr "Lỗi tải dữ liệu Vào/Ra - Được gửi bằng email"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Error create DeviceUserAttendance record: device_id %s; user_id %s; "
+"timestamp %s; attendance_state_id %s.<br />"
+msgstr ""
+"Lỗi khi khởi tạo bản ghi Vào/Ra: device_id %s; user_id %s; timestamp %s; "
+"attendance_state_id %s;<br />"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_dow__-1
+msgid "Everyday"
+msgstr "Hằng ngày"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/hr_employee.py:0
+#, python-format
+msgid "Fail to upload the employee: %s to the machine: %s. %s\n"
+msgstr "Tải nhân viên: %s lên máy chấm công: %s thất bại. %s\n"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__fid
+msgid "Finger Id"
+msgstr "ID Mẫu Vân tay"
+
+#. module: to_attendance_device
+#: model:ir.actions.act_window,name:to_attendance_device.action_finger_template
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__finger_template_ids
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__finger_templates_ids
+#: model:ir.model.fields,field_description:to_attendance_device.field_hr_employee__finger_templates_ids
+#: model:ir.ui.menu,name:to_attendance_device.finger_template_menu
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_finger_template_search_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_finger_template_form
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_finger_template_tree
+msgid "Finger Template"
+msgstr "Mẫu Vân tay"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__total_finger_template_records
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__total_finger_template_records
+#: model:ir.model.fields,field_description:to_attendance_device.field_hr_employee__total_finger_template_records
+msgid "Finger Templates"
+msgstr "Mẫu Vân tay"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__fingerprint_algorithm
+msgid "Fingerprint Algorithm"
+msgstr "Thuật toán Vân tay"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_finger_template
+msgid "Fingers Template"
+msgstr "Mẫu Vân tay"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__firmware_version
+msgid "Firmware Version"
+msgstr "Phiên bản Firmware"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_follower_ids
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_follower_ids
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_follower_ids
+msgid "Followers"
+msgstr "Theo dõi"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_partner_ids
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_partner_ids
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_partner_ids
+msgid "Followers (Partners)"
+msgstr "Người theo dõi (Các đối tác)"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__activity_type_icon
+msgid "Font awesome icon e.g. fa-tasks"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_dow__4
+msgid "Friday"
+msgstr "Thứ sáu"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__create_employee_during_mapping
+msgid "Generate Employees During Mapping"
+msgstr "Tạo Nhân viên khi Khớp"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.action_server_get_device_info
+msgid "Get Machine Info"
+msgstr "Lấy Thông tin máy"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__group_id
+msgid "Group"
+msgstr "Nhóm"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_attendance_data_search_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_finger_template_search_view
+msgid "Group By..."
+msgstr "Nhóm theo..."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__group_id
+msgid "Group ID of the user on the attendance machines"
+msgstr "ID phân nhóm cho Người dùng thiết bị trên máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__hr_attendance_id
+msgid "HR Attendance"
+msgstr "Bản ghi Chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__has_message
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__has_message
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__has_message
+msgid "Has Message"
+msgstr "Có tin nhắn"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.device_confirm_wizard_view_form
+msgid "I am sure about this."
+msgstr "Tôi chắc chắn về điều này."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__id
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__id
+msgid "ID"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__user_id
+msgid "ID Number"
+msgstr "Số ID"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__ip
+msgid "IP / Domain Name"
+msgstr "IP / Tên miền"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__activity_exception_icon
+msgid "Icon"
+msgstr "Biểu tượng"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__activity_exception_icon
+msgid "Icon to indicate an exception activity."
+msgstr "Biểu tượng để chỉ ra một hoạt động ngoại lệ."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__debug_message
+msgid ""
+"If checked, debugging messages will be posted in OpenChatter for debugging "
+"purpose"
+msgstr ""
+"Nếu đánh dấu, thông điệp gỡ lỗi sẽ được đăng vào khu vực OpenChatter cho mục"
+" đích gỡ lỗi"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__create_employee_during_mapping
+msgid ""
+"If checked, during mapping between Machine's Users and company's employees, "
+"unmapped machine users will try to create a new employee then map "
+"accordingly."
+msgstr ""
+"Nếu được đánh dấu, trong quá trình khớp Người dùng Thiết bị với Nhân viên ở "
+"Odoo, Odoo sẽ tạo Nhân viên ứng với những Người dùng Thiết bị mà không khớp "
+"với Nhân viên nào trong Odoo (Nhân viên mới tạo sẽ tự khớp vói Người dùng)."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__message_needaction
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__message_unread
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__message_needaction
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__message_unread
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__message_needaction
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__message_unread
+msgid "If checked, new messages require your attention."
+msgstr "Nếu đánh dấu chọn, các thông điệp mới yêu cầu sự có mặt của bạn."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__message_has_error
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__message_has_sms_error
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__message_has_error
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__message_has_sms_error
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__message_has_error
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__message_has_sms_error
+msgid "If checked, some messages have a delivery error."
+msgstr "Nếu được đánh dấu, thông điệp có lỗi về gửi tin."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__del_user
+msgid ""
+"If checked, the user on the machine will be deleted upon deleting this "
+"record in Odoo"
+msgstr "Nếu đánh dấu, Người dùng Thiết bị sẽ bị xoá theo khi xoá bản ghi này"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__ignore_unknown_code
+msgid "Ignore Unknown Code"
+msgstr "Bỏ qua Mã chưa biết"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_attendance_device_filter
+msgid "Inactive"
+msgstr "Bị Vô hiệu"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Information"
+msgstr "Thông tin"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_is_follower
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_is_follower
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_is_follower
+msgid "Is Follower"
+msgstr "Là người theo dõi"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "It was not safe to clear attendance data from the machine %s.<br />"
+msgstr "Việc xoá dữ liệu vào/ra trên máy chấm công %s là không an toàn.<br />"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template____last_update
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance____last_update
+msgid "Last Modified on"
+msgstr "Lần sửa cuối"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__last_attendance_download
+msgid "Last Sync."
+msgstr "Lần đồng bộ gần nhất"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__write_uid
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__write_uid
+msgid "Last Updated by"
+msgstr "Cập nhật lần cuối bởi"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__write_date
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__write_date
+msgid "Last Updated on"
+msgstr "Lần cập nhật cuối"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__umapped_device_user_ids
+msgid "List of Machine Users that have not been mapped with an employee"
+msgstr "Danh sách Người dùng Thiết bị chưa được khớp với Nhân viên trên Odoo"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__device_user_ids
+msgid "List of Users stored in the attendance machine"
+msgstr "Danh sách Người dùng Thiết bị trong máy chấm công"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "List of attendance records retrieved from the machine"
+msgstr "Danh sách các bản ghi vào/ra được tải về từ máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__mapped_employee_ids
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "List of employees that have been mapped with this machine's users"
+msgstr ""
+"Danh sách Nhân viên đã được khớp với Người dùng Thiết bị của máy chấm công."
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid ""
+"List of machine users that have been downloaded for this machine in Odoo"
+msgstr "Danh sách Người dùng Thiết bị đã được tải về Odoo"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__location_id
+msgid "Location"
+msgstr "Địa điểm"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__device_id
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_attendance_data_search_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_finger_template_search_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_attendance_device_filter
+msgid "Machine"
+msgstr "Máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__status
+msgid "Machine Attendance State"
+msgstr "Trạng thái Vào/Ra trên máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_device_confirm_wizard
+msgid "Machine Confirm Wizard"
+msgstr "Đồ thuật xác nhận thao tác với máy chấm công"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Machine Connection"
+msgstr "Kết nối máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.actions.act_window,name:to_attendance_device.attendance_device_list_action
+msgid "Machine Information"
+msgstr "Thông tin máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__device_name
+msgid "Machine Name"
+msgstr "Tên máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_attendance_device_location
+msgid "Machine Position"
+msgstr "Vị trí máy chấm công"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Machine Time"
+msgstr "Thời gian Máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__device_user_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__user_id
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_device_user_form_view
+msgid "Machine User"
+msgstr "Người dùng Thiết bị"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__device_user_ids
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_users_search_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_users_tree_view
+msgid "Machine Users"
+msgstr "Người dùng Thiết bị"
+
+#. module: to_attendance_device
+#: model:ir.ui.menu,name:to_attendance_device.default_attendace_device_manager_menu
+msgid "Machines Manager"
+msgstr "Quản lý Máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.actions.act_window,name:to_attendance_device.device_user_list_action
+#: model:ir.ui.menu,name:to_attendance_device.device_users_menu
+msgid "Machines Users"
+msgstr "Người dùng Thiết bị"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_main_attachment_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_main_attachment_id
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_main_attachment_id
+msgid "Main Attachment"
+msgstr "Đính kèm chính"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__map_before_dl
+msgid "Map Employee Before Download"
+msgstr "Khớp Nhân viên trước khi tải dữ liệu Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.action_server_employee_map
+msgid "Map Employees"
+msgstr "Khớp Nhân viên"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Map Employees With Users"
+msgstr " Khớp Nhân viên với Người dùng Thiết bị"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_hr_employee__device_user_ids
+msgid "Mapped Device Users"
+msgstr "Người dùng Thiết bị được khớp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__mapped_employees_count
+msgid "Mapped Employee Count"
+msgstr "SL Nhân viên đã khớp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__mapped_employee_ids
+msgid "Mapped Employees"
+msgstr "Nhân viên đã khớp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__timeout
+msgid "Maximum time in seconds to wait for response from the machine"
+msgstr "Thời gian tối đa chờ phản hồi từ máy chấm công, tính bằng giây"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_has_error
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_has_error
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_has_error
+msgid "Message Delivery error"
+msgstr "Có Lỗi Gửi Thông điệp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_ids
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_ids
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_ids
+msgid "Messages"
+msgstr "Thông điệp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_dow__0
+msgid "Monday"
+msgstr "Thư Hai"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__my_activity_date_deadline
+msgid "My Activity Deadline"
+msgstr "Hạn chót cho hành động"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity__name
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__name
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location__name
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__name
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__name
+msgid "Name"
+msgstr "Tên"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__activity_date_deadline
+msgid "Next Activity Deadline"
+msgstr "Hạn chót lần hành động kế tiếp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__activity_summary
+msgid "Next Activity Summary"
+msgstr "Tóm tắt hoạt động tiếp theo"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__activity_type_id
+msgid "Next Activity Type"
+msgstr "Kiểu hành động kế tiếp"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_users_search_view
+msgid "No Attendance"
+msgstr "Không có Vào/Ra"
+
+#. module: to_attendance_device
+#: model:attendance.activity,name:to_attendance_device.attendance_activity_normal
+msgid "Normal Attendance"
+msgstr "Làm việc Bình thường"
+
+#. module: to_attendance_device
+#: model:mail.template,subject:to_attendance_device.email_template_not_safe_to_clear_attendance
+msgid "Not Safe to clear Attendance Data (Ref {{ object.name }})"
+msgstr "Không an toàn để xoá dữ liệu Vào/Ra (Ref {{object.name}})"
+
+#. module: to_attendance_device
+#: model:mail.template,name:to_attendance_device.email_template_not_safe_to_clear_attendance
+msgid "Not Safe to clear Attendance Data - Send by Email"
+msgstr "Không an toàn để xoá dữ liệu Vào/ra - Được gửi bằng email"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_attendance_data_search_view
+msgid "Not Synchronized"
+msgstr "Chưa Đồng bộ"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_users_search_view
+msgid "Not in Machine"
+msgstr "Không có trong máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__not_in_device
+msgid "Not in machine"
+msgstr "Không có trong máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__auto_clear_attendance_error_notif
+msgid "Notify upon no safe found to clear attendance data"
+msgstr "Thông báo khi không an toàn để xoá dữ liệu Vào/Ra trên máy"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_needaction_counter
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_needaction_counter
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_needaction_counter
+msgid "Number of Actions"
+msgstr "Số lượng Hành động"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_has_error_counter
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_has_error_counter
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_has_error_counter
+msgid "Number of errors"
+msgstr "Số lỗi"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__message_needaction_counter
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__message_needaction_counter
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__message_needaction_counter
+msgid "Number of messages which requires an action"
+msgstr "Số thông điệp cần có hành động"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__message_has_error_counter
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__message_has_error_counter
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr "Số lượng các thông điệp có lỗi về gửi tin"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__message_unread_counter
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__message_unread_counter
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__message_unread_counter
+msgid "Number of unread messages"
+msgstr "Số thông điệp chưa đọc"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__oem_vendor
+msgid "OEM Vendor"
+msgstr "Nhà sản xuất OEM"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.device_confirm_wizard_view_form
+msgid "OK"
+msgstr "Đồng ý"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Odoo will connect and clear all the attendance data in this machine. Are you"
+" sure about this?"
+msgstr ""
+"Odoo sẽ kết nối và xóa toàn bộ dữ liệu Vào/Ra có trong máy chấm công. Bạn có"
+" chắc chắn về điều này không?"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Odoo will connect and download all the fingers template from your machine. "
+"Do you want to proceed?"
+msgstr ""
+"Odoo sẽ kết nối và tải về toàn bộ dữ liệu vân tay có trong máy chấm công. "
+"Bạn có muốn tiếp tục không?"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Odoo will connect and download all the users from your machine (without "
+"mapping those with the existing Employees in Odoo). Do you want to proceed?"
+msgstr ""
+"Odoo sẽ kết nối và tải về toàn bộ Người dùng Thiết bị có trong máy chấm công"
+" (Không thực hiện khớp toàn bộ Người dùng này với những Nhân viên đang có "
+"trên hệ thống). Bạn có muốn tiếp tục không?"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Odoo will connect and download all the users from your machine and try to "
+"map those with the Odoo's employees. Do you want to proceed?"
+msgstr ""
+"Odoo sẽ kết nối và tải về toàn bộ Người dùng Thiết bị có trong máy chấm "
+"công, đồng thời Khớp toàn bộ Người dùng này với những Nhân viên đang có trên"
+" hệ thống. Bạn có muốn tiếp tục không?"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"Odoo will map the existing users with Odoo's employees. The unmapped "
+"employees will be uploaded to this machine as new users and then download "
+"those new users into Odoo and map them again with those unmapped employees. "
+"Do you want to proceed?"
+msgstr ""
+"Phần mềm sẽ khớp toàn bộ Người dùng Thiết bị với những nhân viên đang có "
+"trên hệ thống. Sau đó, những Nhân viên chưa được khớp sẽ được tải lên máy "
+"chấm công để tạo Người dùng Thiết bị mới. Bạn có chắc chắn muốn tiếp tục "
+"không?"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__omit_ping
+msgid "Omit Ping"
+msgstr "Bỏ qua Ping"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__omit_ping
+msgid "Omit ping ip address when connecting to machine."
+msgstr "Bỏ qua thao tác ping khi kiểm tra kết nối với máy chấm công."
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_schedule__on_download_complete
+msgid "On Download Completion"
+msgstr "Khi hoàn tất tải xuống"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__auto_clear_attendance_schedule
+msgid ""
+"On Download Completion: Delete attendance data as soon as download finished\n"
+"Time Scheduled: Delete attendance data on the time specified below"
+msgstr ""
+"Ngay khi Hoàn thành Tải về: Xoá dữ liệu vào ra trên máy chấm công ngay khi hoàn thành việc tải chúng về Odoo\n"
+"Giờ Ấn định: Xoá dữ liệu vào ra trên máy chấm công theo lịch ấn định dưới đây"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__state
+msgid ""
+"Only confirmed machines will get their data synchronized automatically."
+msgstr "Chỉ những máy chấm công đã xác nhận mới được đồng bộ dữ liệu tự động."
+
+#. module: to_attendance_device
+#: model:attendance.activity,name:to_attendance_device.attendance_activity_overtime
+msgid "Overtime"
+msgstr "Tăng ca"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__password
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__password
+msgid "Password"
+msgstr "Mật khẩu"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__platform
+msgid "Platform"
+msgstr "Nền tảng"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__port
+msgid "Port"
+msgstr "Cổng"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__privilege
+msgid "Privilege"
+msgstr "Nhóm Phân quyền"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__privilege
+msgid "Privilege of the user on the attendance machines"
+msgstr "Phân quyền cho Người dùng thiết bị trên máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__protocol
+msgid "Protocol"
+msgstr "Giao thức"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__activity_user_id
+msgid "Responsible User"
+msgstr "Người chịu trách nhiệm"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#: model:ir.actions.server,name:to_attendance_device.action_server_device_restart
+#, python-format
+msgid "Restart Machine"
+msgstr "Khởi động lại"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_has_sms_error
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_has_sms_error
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_has_sms_error
+msgid "SMS Delivery error"
+msgstr "Có lỗi gửi SMS"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__safe_checked
+msgid "Safe Checked"
+msgstr "Trạng thái an toàn đã được kiểm tra"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__safe_confirm
+msgid "Safety To Confirm"
+msgstr "Trạng thái an toàn đã được xác nhận"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_dow__5
+msgid "Saturday"
+msgstr "Thứ Bảy"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_attendance_device_filter
+msgid "Search Attendance Machines"
+msgstr "Tìm kiếm Máy chấm công"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_attendance_data_search_view
+msgid "Search User Attendance Data"
+msgstr "Tìm kiếm Dữ liệu Vào/Ra của Người dùng"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__serialnumber
+msgid "Serial Number"
+msgstr "Số sê-ri"
+
+#. module: to_attendance_device
+#: model:ir.ui.menu,name:to_attendance_device.hr_attendance_settings
+msgid "Settings"
+msgstr "Thiết lập"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.action_server_show_device_time
+msgid "Show Machine Time"
+msgstr "Thời gian trên máy"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_attendance_data_search_view
+msgid "Show attendance records that have no link to Odoo's HR Atteandnce"
+msgstr ""
+"Hiển thị các dữ liệu Vào/Ra mà chưa liên kết với Bản ghi chấm công trong "
+"phần mềm"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.attendance_device_user_form_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_employee_form
+msgid "Show fingerprint templates of this employee"
+msgstr "Hiển thị các mẫu dấu vân tay của nhân viên này"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_users_search_view
+msgid ""
+"Show users that are not in machines. They could be deleted outside Odoo"
+msgstr ""
+"Hiển thị những Người dùng Thiết bị không có trong máy chấm công. Chúng có "
+"thể bị xóa bên ngoài Odoo."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__attendance_state_id
+msgid "Software Attendance State"
+msgstr "Trạng thái Vào/Ra trên Odoo"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__unique_uid
+msgid ""
+"Some Bad Machines allow uid duplication. In this case, uncheck this field. "
+"But it is recommended to change your machine."
+msgstr ""
+"Một số máy chấm công cho phép trùng lặp uid và có thể dẫn đến sai sót khi "
+"thực hiện chấm công. Khi dùng những máy chấm công đó, hãy bỏ chọn trường "
+"này. Tuy nhiên, nếu có thể thì bạn nên đổi sang máy chấm công khác."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__unaccent_user_name
+msgid ""
+"Some Machines support Unicode names such as the ZKTeco K50, some others do "
+"not. In addition to this, the name field on devices is usually limited at "
+"about 24 Latin characters or less Unicode characters. Unaccent is sometimes "
+"a workaround for long Unicode names"
+msgstr ""
+"Một số máy chấm công hỗ trợ Unicode như ZKTeco K50, một số máy khác thì "
+"không. Ngoài ra, chuỗi ký tự trong máy thường bị giới hạn khoảng 24 ký tự "
+"Latinh hoặc ít ký tự Unicode hơn. Nên sử dụng không dấu cho các chuỗi ký tự "
+"Unicode dài."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__protocol
+msgid ""
+"Some old devices do not support TCP. In such the case, please try on "
+"switching to UDP."
+msgstr ""
+"Một số máy chấm công đời cũ không hỗ trợ TCP. Trong trường hợp này, vui lòng"
+" thử chuyển sang UDP."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__ignore_unknown_code
+msgid ""
+"Sometimes you don't want to load attendance data with status codes those not"
+" declared in the table below. In such the case, check this field."
+msgstr ""
+"Đôi khi, bạn không muốn tải về dữ liệu vào/ra với mã trạng thái không được "
+"khai báo ở bảng dưới đây. Trong những trường hợp như vậy, đánh dấu vào "
+"trường này."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_state_line__attendance_state_id
+msgid "State Code"
+msgstr "Mã Trạng thái"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__attendance_device_state_line_ids
+msgid "State Codes"
+msgstr "Mã Trạng thái"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__state
+msgid "Status"
+msgstr "Tình trạng"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_activity__status_count
+msgid "Status Count"
+msgstr "SL Trạng thái"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__activity_state
+msgid ""
+"Status based on activities\n"
+"Overdue: Due date is already passed\n"
+"Today: Activity date is today\n"
+"Planned: Future activities."
+msgstr ""
+"Trạng thái dựa trên hoạt động\n"
+"Quá hạn: Ngày đến hạn đã trôi qua\n"
+"Hôm nay: Hôm nay là ngày phải thực hiện\n"
+"Đã hoạch định: Các hoạt động trong tương lai."
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_dow__6
+msgid "Sunday"
+msgstr "Chủ nhật"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.wizard_form_view
+msgid "Synchronize Data"
+msgstr "Đồng bộ Dữ liệu"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.action_server_sync_attendance
+msgid "Synchronize HR Attendances"
+msgstr "Đồng bộ Quản lý Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.ir_cron_scheduler_sync_attendance_ir_actions_server
+#: model:ir.cron,cron_name:to_attendance_device.ir_cron_scheduler_sync_attendance
+#: model:ir.cron,name:to_attendance_device.ir_cron_scheduler_sync_attendance
+msgid "Synchronize attendances scheduler"
+msgstr "Đồng bộ Dữ liệu Quản lý Vào/Ra"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__protocol__tcp
+msgid "TCP"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__max_size_TCP
+msgid "TCP Max-Size"
+msgstr ""
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "Technical Settings"
+msgstr "Thiết lập Kỹ thuật"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__not_in_device
+msgid ""
+"Technical field to indicate this user is not available in machine storage. "
+"It could be deleted outside Odoo."
+msgstr ""
+"Trường kỹ thuật để chỉ báo bản ghi người dùng này không khả dụng ở phía máy "
+"chấm công. Nó có thể đã bị xoá ở ngoài Odoo."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__user_id
+msgid "Technician"
+msgstr "Kỹ thuật viên"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__template
+msgid "Template"
+msgstr "Mẫu"
+
+#. module: to_attendance_device
+#: model:ir.model.constraint,message:to_attendance_device.constraint_attendance_state_name_activity_id_unique
+msgid ""
+"The Activity Type and Activity must be unique! Please recheck if you have "
+"previously defined an attendance status with the same Activity Type and "
+"Activity"
+msgstr ""
+"Loại Hoạt động và Hoạt động phải là đồng nhất! Vui lòng kiểm tra lại nếu bạn"
+" đã định nghĩa trạng thái điểm danh với cùng Loại hoạt động và Hoạt động"
+
+#. module: to_attendance_device
+#: model:ir.model.constraint,message:to_attendance_device.constraint_attendance_device_state_line_attendance_state_id_device_id_unique
+msgid "The Code must be unique per Machine"
+msgstr "Code phải là duy nhất cho mỗi máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.constraint,message:to_attendance_device.constraint_attendance_state_code_unique
+msgid "The Code must be unique!"
+msgstr "Code phải là duy nhất!"
+
+#. module: to_attendance_device
+#: model:ir.model.constraint,message:to_attendance_device.constraint_attendance_device_user_employee_id_device_id_unique
+msgid "The Employee must be unique per machine"
+msgstr "Nhân viên phải là duy nhất cho mỗi máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__employee_id
+#: model:ir.model.fields,help:to_attendance_device.field_user_attendance__employee_id
+msgid "The Employee who is corresponding to this machine user"
+msgstr "Nhân viên ứng với Người dùng Thiết bị này"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__fingerprint_algorithm
+msgid ""
+"The Fingerprint Algorithm (aka ZKFPVersion) of the machine which will be "
+"filled automatically when you hit the 'Get Machine Info' button."
+msgstr ""
+"Thuật toán vân tay (hay còn gọi là ZKFPVersion) của máy chấm công sẽ được "
+"tạo khi bạn thực hiện thao tác 'Lấy Thông tin máy'."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__uid
+#: model:ir.model.fields,help:to_attendance_device.field_finger_template__uid
+msgid "The ID (technical field) of the user/employee in the machine storage"
+msgstr ""
+"ID (trường kỹ thuật) của người dùng trong danh bạ người dùng lưu trữ ở máy "
+"chấm công."
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device_user.py:0
+#, python-format
+msgid ""
+"The ID Number must be unique per machine! A new user was being "
+"created/updated whose user_id and machine_id is the same as the existing "
+"one's (name: %s; machine: %s; user_id: %s)"
+msgstr ""
+"Mã số Người dùng (ID Number) phải là duy nhất ở mỗi máy chấm công. Người "
+"dùng mới được tạo hoặc cập nhật có thể bị trùng thông tin với một Người dùng"
+" đã tồn tại (tên: %s; máy chấm công: %s; user_id: %s)"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__user_id
+msgid "The ID Number of the user/employee in the machine storage"
+msgstr ""
+"Mã số Người dùng (ID Number) của Người dùng Thiết bị được lưu trong máy chấm"
+" công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_finger_template__fid
+msgid "The ID of this finger template in the attendance machine."
+msgstr "ID của mẫu vân tay trên máy chấm công."
+
+#. module: to_attendance_device
+#: model:ir.model.constraint,message:to_attendance_device.constraint_attendance_activity_unique_name
+msgid "The Name of the attendance activity must be unique!"
+msgstr "Tên của hoạt động vào/ra phải là duy nhất!"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__oem_vendor
+msgid ""
+"The OEM Vendor of the machine which will be filled automatically when you "
+"hit the 'Get Machine Info' button."
+msgstr ""
+"Nhà sản xuất OEM, được điền tự động khi bạn bấm nút 'Lấy Thông tin máy'."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__platform
+msgid ""
+"The Platform of the machine which will be filled automatically when you hit "
+"the 'Get Machine Info' button."
+msgstr ""
+"Platform của máy chấm công, được điền tự động khi bạn bấm nút 'Lấy Thông tin"
+" máy'."
+
+#. module: to_attendance_device
+#: model:ir.model.constraint,message:to_attendance_device.constraint_user_attendance_unique_user_id_device_id_timestamp
+msgid "The Timestamp and User must be unique per machine"
+msgstr ""
+"Thời gian và Người dùng Thiết bị trong dữ liệu Vào/Ra phải là duy nhất trên "
+"mỗi máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__work_code
+msgid ""
+"The Work Code of the machine which will be filled automatically when you hit"
+" the 'Get Machine Info' button."
+msgstr ""
+"Work Code của máy chấm công, được điền tự động khi bạn bấm nút 'Lấy Thông "
+"tin máy'."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__ip
+msgid ""
+"The accessible IP or Domain Name of the machine to get the machine's "
+"attendance data"
+msgstr ""
+"Địa chỉ IP hoặc tên miền có thể kết nối được của máy chấm công để tải về các"
+" dữ liệu của máy"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_activity__attendance_status_ids
+msgid "The check-in and check-out statuses of this activity"
+msgstr "Tình trạng check-in và check-out của hoạt động này"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_user_attendance__timestamp
+msgid ""
+"The date and time at which the employee took a check in/out action at the "
+"attendance machine"
+msgstr ""
+"Thời điểm các Nhân viên thực hiện đăng nhập/đăng xuất trên máy chấm công."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__max_size_UDP
+msgid ""
+"The default value (16384) works well for almost attendance machines. However, in some rare cases, the error 'timed out' may occur while getting data from devices. In such situation, you may try on decreasing this value to see if it would help\n"
+".Note: the smaller this value is, the slower data getting will be."
+msgstr ""
+"Giá trị mặc định (16384) được sử dụng đối với hầu hết các máy chấm công. Tuy nhiên, trong một số ít trường hợp, lỗi 'Hết thời gian chờ (Timeout)' có thể xảy ra khi tải dữ liệu từ máy. Khi đó, bạn có thể giảm giá trị này xuống và thử thao tác lại.\n"
+" .Lưu ý: Giá trị này càng nhỏ thì thời gian tải dữ liệu càng lâu."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__max_size_TCP
+msgid ""
+"The default value (65472) works well for almost attendance machines. However, in some rare cases the error '[Errno 32] Broken pipe' may occur while getting data from devices. In such case, you may try on decreasing this value to see if it would help.\n"
+"Note: the smaller this value is, the slower data getting will be."
+msgstr ""
+"Giá trị mặc định (65472) được sử dụng đối với hầu hết các máy chấm công. Tuy nhiên, trong một số ít trường hợp lỗi '[Errno 32] Broken pipeline' có thể xảy ra khi tải dữ liệu từ máy. Khi đó, bạn có thể giảm giá trị này xuống và thử thao tác lại.\n"
+" .Lưu ý: Giá trị này càng nhỏ thì thời gian tải dữ liệu càng lâu."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_finger_template__device_user_id
+msgid "The device user who is owner of this finger template"
+msgstr "Người dùng Thiết bị sở hữu mẫu vân tay này"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_hr_attendance__checkin_device_id
+msgid "The device with which user took check in action"
+msgstr "Máy chấm công mà Người dùng thực hiện hành động đăng nhập"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_hr_attendance__checkout_device_id
+msgid "The device with which user took check out action"
+msgstr "Máy chấm công mà Người dùng thực hiện hành động đăng xuất"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_location__tz
+msgid ""
+"The device's timezone, used to output proper date and time values inside "
+"attendance reports. It is important to set a value for this field."
+msgstr ""
+"Múi giờ của máy chấm công, được sử dụng để xuất dữ liệu thời gian tương ứng "
+"với vị trí đặt máy. Giá trị của trường này cực kỳ quan trọng!"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_hr_employee__unamapped_attendance_device_ids
+msgid ""
+"The devices that have not store this employee as an user yet. When you map "
+"employee with a user of a device, the device will disappear from this list."
+msgstr ""
+"Máy chấm công mà không lưu trữ thông tin Nhân viên này như một Người dùng "
+"Thiết bị (user). Khi bạn khớp một Nhân viên với một Người dùng Thiết bị, máy"
+" chấm công đó sẽ bị ẩn khỏi danh mục này."
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/hr_employee.py:0
+#, python-format
+msgid ""
+"The employee '%s' is currently referred by an attendance machine user. "
+"Hence, you can not change the Badge ID of the employee"
+msgstr ""
+"Hồ sơ Nhân viên '%s' hiện đang được tham chiếu bởi một Người dùng Thiết bị. "
+"Vì thế, bạn không được phép thay đổi Badge ID của Nhân viên."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_finger_template__employee_id
+msgid "The employee who is owner of this finger template"
+msgstr "Nhân viên trong hệ thống sở hữu mẫu vân tay này."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__unmapped_employee_ids
+msgid "The employees that have not been mapped with any user of this machine"
+msgstr ""
+"Các nhân viên mà chưa được khớp với người dùng trong máy chấm công này"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__firmware_version
+msgid ""
+"The firmware version of the machine which will be filled automatically when "
+"you hit the 'Get Machine Info' button."
+msgstr ""
+"Phiên bản Firmware của máy chấm công, được điền tự động khi bạn bấm nút 'Lấy"
+" Thông tin máy'."
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "The following attendance data has not been stored in Odoo yet:<br />"
+msgstr "Dữ liệu dưới đây vẫn chưa được lưu trữ trong Odoo:<br />"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"The following employees, who have no Badge ID defined, have not been "
+"uploaded to the corresponding machine:\n"
+msgstr ""
+"Nhân viên sau đây chưa được tải lên máy chấm công (do chưa có Badge ID):\n"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__last_attendance_download
+msgid ""
+"The last time that the attendance data was downlowed from the machine into "
+"Odoo."
+msgstr ""
+"Thời gian cuối cùng mà dữ liệu vào/ra được tải về Odoo từ máy chấm công."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__location_id
+msgid "The location where the machine is located"
+msgstr "Vị trí đặt máy chấm công"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "The machine time is %s"
+msgstr "Thời gian trên máy chấm công: %s"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__tz
+msgid ""
+"The machine's timezone, used to output proper date and time values inside "
+"attendance reports."
+msgstr ""
+"Múi giờ của máy chấm công, được sử dụng để xuất giá trị đúng của ngày và giờ"
+" trong báo cáo Quản lý vào/ra."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__device_name
+msgid ""
+"The model of the machine which will be filled automatically when you hit the"
+" 'Get Machine Info' button."
+msgstr ""
+"Model của máy chấm công, được điền tự động khi bạn bấm nút 'Lấy Thông tin "
+"máy'."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_activity__name
+msgid ""
+"The name of the attendance activity. E.g. Normal Working, Overtime, etc"
+msgstr "Tên của hoạt động Vào/Ra. Ví dụ: Làm việc bình thường, Tăng ca, v.v."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__name
+msgid "The name of the attendance machine"
+msgstr "Tên của Máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_state__name
+msgid ""
+"The name of the attendance state. E.g. Login, Logout, Overtime Start, etc"
+msgstr ""
+"Tên của trạng thái vào/ra. Ví dụ: Đăng nhập, Đăng xuất, Bắt đầu Tăng ca, "
+"v.v."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__name
+msgid "The name of the employee stored in the machine"
+msgstr "Tên của nhân viên được lưu trong máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__password
+msgid "The password to authenticate the machine, if required"
+msgstr "Mật khẩu để xác thực máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_location__name
+msgid ""
+"The position where the machine is equipped. E.g. Front Door, Back Door, etc"
+msgstr "Vị trí lắp đặt máy chấm công. Ví dụ: Cổng chính, Cổng phụ, v.v."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__serialnumber
+msgid ""
+"The serial number of the machine which will be filled automatically when you"
+" hit the 'Get Machine Info' button."
+msgstr ""
+"Số sê-ri của máy chấm công, được điền tự động khi bạn bấm nút 'Lấy Thông tin"
+" máy'."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_user_attendance__status
+msgid ""
+"The state which is the unique number stored in the machine to indicate type "
+"of attendance (e.g. 0: Checkin, 1: Checkout, etc)"
+msgstr ""
+"Mã số thể hiện kiểu vào/ra trong máy chấm công (vd: 0: Vào; 1: Ra, v.v.)"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_user_attendance__hr_attendance_id
+msgid ""
+"The technical field to link Machine Attendance Data with Odoo Attendance "
+"Data"
+msgstr ""
+"Trường kỹ thuật để liên kết một bản ghi vào/ra của máy chấm công với một bản"
+" ghi vào/ra của Odoo"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__attendance_id
+msgid "The technical field to store current attendance recorded of the user."
+msgstr ""
+"Trường kỹ thuật để lưu trữ bản ghi vào/ra hiện hành (gần nhất) của người "
+"dùng."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__auto_clear_attendance_hour
+msgid ""
+"The time (in the attendance machine's timezone) to clear attendance data "
+"after download."
+msgstr ""
+"Thời điểm (theo múi giờ của máy chấm công) để xoá dữ liệu vào/ra ngay khi "
+"hoàn thành việc tải về"
+
+#. module: to_attendance_device
+#: model:res.groups,comment:to_attendance_device.group_attendance_devices_manager
+msgid ""
+"The users in this group will have full access rights to attendance machines "
+"and their data."
+msgstr ""
+"Người dùng trong nhóm này sẽ có toàn quyền quản lý máy chấm công và dữ liệu "
+"của họ."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_location__hr_work_location_id
+msgid "The work location to where this machine position belongs."
+msgstr "Địa điểm làm việc mà vị trí của máy chấm công được lắp đặt."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_hr_employee__created_from_attendance_device
+msgid ""
+"This field indicates that the employee was created from the data of an "
+"attendance machine"
+msgstr ""
+"Trường này để chỉ báo rằng nhân viên được tạo từ dữ liệu của máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_hr_attendance__activity_id
+msgid ""
+"This field is to group attendance into multiple Activity (e.g. Overtime, "
+"Normal Working, etc)"
+msgstr ""
+"Trường này để nhóm dữ liệu vào/ra vào các hoạt động khác nhau (vd: Tăng ca, "
+"Làm việc bình thường, v.v.)"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"This is for experiment to check if the machine contains bad data with non-unique user's uid. Turn this option off will allow mapping machine user's user_id with user's user_id in Odoo.\n"
+"NOTE:\n"
+"- non-latin user_id are not supportted.\n"
+"- Do not turn this option off in production."
+msgstr ""
+"Tính năng này để kiểm thử xem máy chấm công có chứa dữ liệu lỗi không (vd: trùng lặp uid dữ liệu người dùng. Tắt chức năng này sẽ cho phép khớp Người dùng Thiết bị trong máy chấm công với Người dùng Thiết bị trong Odoo mà không kiểm tra tính duy nhất của uid.\n"
+"LƯU Ý:\n"
+"- user_id không phải ký tự latin có thể không được hỗ trợ.\n"
+"- Không được tắt tính năng này khi dùng thật."
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_user_attendance__attendance_state_id
+msgid ""
+"This technical field is to map the attendance status stored in the machine "
+"and the attendance status in Odoo"
+msgstr ""
+"Trường kỹ thuật này để khớp dữ liệu vào/ra được lưu trong máy chấm công với "
+"dữ liệu vào/ra trong Odoo"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid ""
+"This will download all attendance data and store in the software database "
+"(i.e. in the User Attendance, not software HR Attendance)"
+msgstr ""
+"Đồ thuật này sẽ tải về toàn bộ các dữ liệu có mặt và lưu vào cơ sở dữ liệu "
+"của phần mềm (cụ thể: ở trong danh mục `Máy chấm công > Dữ liệu Vào/Ra`, "
+"không phải ở trong `Điểm danh`)"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.wizard_form_view
+msgid ""
+"This wizard will upload selected employees to the selected machine.\n"
+"\t\t\t\t\t\t<br/>\n"
+"\t\t\t\t\t\tNote: In case you get timeout error, please try on reducing\n"
+"\t\t\t\t\t\tnumber\n"
+"\t\t\t\t\t\tof employees to upload."
+msgstr ""
+"Trình hướng dẫn này sẽ tải các nhân viên được chọn lên máy chấm công đã chọn. \n"
+"\t\t\t\t\t\t<br/>\n"
+"\t\t\t\t\t\tLưu ý: Trong trường hợp bạn gặp lỗi hết thời gian chờ, vui lòng thử giảm \n"
+"\t\t\t\t\t\tsố \n"
+"\t\t\t\t\tnhân viên tải lên."
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_dow__3
+msgid "Thursday"
+msgstr "Thứ năm"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_schedule__time_scheduled
+msgid "Time Scheduled"
+msgstr "Vào thời điểm cố định"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__tz
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location__tz
+msgid "Time zone"
+msgstr "Múi giờ"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__timeout
+msgid "Timeout"
+msgstr "Thời gian chờ tối đa"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_user_attendance__timestamp
+msgid "Timestamp"
+msgstr "Giờ chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_device_confirm_wizard__title
+msgid "Title of confirmation"
+msgstr "Tiêu đề xác nhận"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_attendance_data_search_view
+msgid "Today"
+msgstr "Hôm nay"
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_dow__1
+msgid "Tuesday"
+msgstr "Thứ Ba"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device__activity_exception_decoration
+msgid "Type of the exception activity on record."
+msgstr "Loại hoạt động ngoại lệ được ghi lại."
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__protocol__udp
+msgid "UDP"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__max_size_UDP
+msgid "UDP Max-Size"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__uid
+msgid "UID"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__uid
+msgid "UId"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__unaccent_user_name
+msgid "Unaccent User Name"
+msgstr "Tên người dùng không dấu"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__unique_uid
+msgid "Unique UID"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:mail.template,subject:to_attendance_device.email_template_unknown_attendance_status_code
+msgid "Unknown Attendance Status Code (Ref {{ object.name }})"
+msgstr "Mã trạng thái chưa biết (Ref {{ object.name }})"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_employee_form
+msgid "Unmapped Attendance Machines"
+msgstr "Máy chấm công Chưa Khớp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__unmapped_employee_ids
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.wizard_form_view
+msgid "Unmapped Employees"
+msgstr "Nhân viên chưa khớp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__umapped_device_user_ids
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "Unmapped Machine Users"
+msgstr "Người dùng Thiết bị chưa khớp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_hr_employee__unamapped_attendance_device_ids
+msgid "Unmapped Machines"
+msgstr "Máy chấm công chưa khớp"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_users_search_view
+msgid "Unmapped Users"
+msgstr "Người dùng Chưa khớp"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_unread
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_unread
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_unread
+msgid "Unread Messages"
+msgstr "Thông điệp chưa đọc"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__message_unread_counter
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_user__message_unread_counter
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_state__message_unread_counter
+msgid "Unread Messages Counter"
+msgstr "Bộ đếm Thông điệp chưa đọc"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_wizard__line_ids
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.wizard_form_view
+msgid "Upload Details"
+msgstr "Chi tiết Tải lên"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.wizard_form_view
+msgid "Upload Employees"
+msgstr "Upload Nhân viên"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.action_server_upload_finger_templates
+msgid "Upload Finger Templates"
+msgstr "Tải lên Mẫu vân tay"
+
+#. module: to_attendance_device
+#: model:ir.actions.server,name:to_attendance_device.action_server_user_upload
+msgid "Upload Users"
+msgstr "Tải lên Người dùng"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "Upload Users To Machine"
+msgstr "Tải Người dùng Thiết bị lên Máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.actions.act_window,name:to_attendance_device.action_employee_upload
+msgid "Upload to Attendance Machine"
+msgstr "Tải lên Máy chấm công"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,help:to_attendance_device.field_attendance_device_user__password
+msgid "Used when checkin/checkout on the attendance machines by password"
+msgstr "Mật khẩu để người dùng đăng nhập/đăng xuất trên máy chấm công"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_attendance_data_search_view
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.user_finger_template_search_view
+msgid "User"
+msgstr "Người dùng"
+
+#. module: to_attendance_device
+#: model:ir.model,name:to_attendance_device.model_user_attendance
+msgid "User Attendance"
+msgstr "Vào/Ra của Người dùng"
+
+#. module: to_attendance_device
+#: model_terms:ir.ui.view,arch_db:to_attendance_device.view_device_record_form
+msgid "Users"
+msgstr "Người dùng"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__device_users_count
+msgid "Users Count"
+msgstr "SL Người dùng"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_finger_template__valid
+msgid "Valid"
+msgstr "Hợp lệ"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"We found attendance status code '%s' from your machine %s but no such code found in the machine's settings in Odoo. Please go to the machine %s and add this attendance code.\n"
+"In case you want to ignore to load attendance data with this code,  go to the machine setting in Odoo and check 'Ignore Unknown Code'."
+msgstr ""
+"Chúng tôi tìm thấy trạng thái với mã \"%s\" trong máy chấm công %s nhưng không tìm thấy mã này trong cấu hình máy trên Odoo. Vui lòng đến thiết lập của máy chấm công %s và thêm mã này.\n"
+"Trong trường hợp bạn muốn bỏ việc nạp dữ liệu Vào/Ra với mã này, hãy đến thiết lập máy trong Odoo và đánh dấu vào. \"Bỏ qua Mã chưa biết\"."
+
+#. module: to_attendance_device
+#: model:ir.model.fields.selection,name:to_attendance_device.selection__attendance_device__auto_clear_attendance_dow__2
+msgid "Wednesday"
+msgstr "Thứ Tư"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_employee_upload_line__wizard_id
+msgid "Wizard"
+msgstr "Đồ thuật"
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device__work_code
+msgid "Work Code"
+msgstr ""
+
+#. module: to_attendance_device
+#: model:ir.model.fields,field_description:to_attendance_device.field_attendance_device_location__hr_work_location_id
+msgid "Work Location"
+msgstr "Địa điểm Làm việc"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "You cannot delete the machine '%s' while its state is not Draft."
+msgstr ""
+"Bạn không thể xóa máy chấm công '%s' khi trạng thái của nó không phải là 'Dự"
+" thảo'."
+
+#. module: to_attendance_device
+#: model:ir.model.constraint,message:to_attendance_device.constraint_attendance_device_ip_and_port_unique
+msgid ""
+"You cannot have more than one machine with the same ip and port of the same "
+"location!"
+msgstr ""
+"Bạn không thể có nhiều máy chấm công có cùng ip và cổng trên một vị trí!"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid ""
+"You may not be able to delete the machine '%s' while its data is stored in "
+"Odoo. Please remove all the related data of this machine before removing it "
+"from Odoo. You may also consider to deactivate this machine so that you "
+"don't have to delete it."
+msgstr ""
+"Bạn không thể xóa máy chấm công '%s' trong khi dữ liệu của nó vẫn đang được "
+"lưu trữ trong Odoo. Vui lòng xóa tất cả dữ liệu liên quan của máy trước khi "
+"xóa trên Odoo. Bạn cũng có thể xem xét hủy kích hoạt máy chấm này để không "
+"phải xóa nó."
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/wizard/device_confirm_wizard.py:0
+#, python-format
+msgid "You must check the commitment \"I am sure about this.\" first!"
+msgstr "Bạn cần phải xác nhận \"Tôi chắc chắn về điều này.\" trước!"
+
+#. module: to_attendance_device
+#: code:addons/to_attendance_device/models/attendance_device.py:0
+#, python-format
+msgid "user_id: %s<br />timestamp: %s<br />status: %s<br />"
+msgstr ""

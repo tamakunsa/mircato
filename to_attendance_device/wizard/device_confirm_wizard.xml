@@ -1,0 +1,29 @@
+<odoo>
+    <record id="device_confirm_wizard_view_form" model="ir.ui.view">
+        <field name="name">device.confirm.wizard.view.form</field>
+        <field name="model">device.confirm.wizard</field>
+        <field name="arch" type="xml">
+            <form>
+                <div class="alert alert-info" role="alert">
+                    <h6>
+                        <p>
+                            <field name="title" colspan="4" nolabel="1" readonly="1" widget="html"/>
+                        </p>
+                    </h6>
+                    <p>
+                        <field name="content" colspan="4" nolabel="1" readonly="1" widget="html"/>
+                        <field name="safe_confirm" invisible="1"/>
+                    </p>
+                </div>
+                <div invisible="safe_confirm == False">
+                    <field name="safe_checked"/>
+                    <label for="safe_checked" string="I am sure about this."/>
+                </div>
+                <footer>
+                    <button string="OK" name="ok" type="object" class="oe_highlight"/>
+                    <button string="Cancel" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

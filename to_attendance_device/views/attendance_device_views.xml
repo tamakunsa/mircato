@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Form view -->
+        <record id="view_device_record_form" model="ir.ui.view">
+            <field name="name">attendance.device.form</field>
+            <field name="model">attendance.device</field>
+            <field name="arch" type="xml">
+                <form string="Attendance Machine">
+                    <header>
+                        <button name="action_fetch_attendance_data" type="object"
+                                string="Download Attendance" class="oe_highlight"
+                                help="This will download all attendance data and store in the software database (i.e. in the User Attendance, not software HR Attendance)"
+                                groups="hr_attendance.group_hr_attendance_own_reader"/>
+                        <button name="action_check_connection" type="object"
+                                string="Check connection"
+                                groups="hr_attendance.group_hr_attendance_own_reader"/>
+                        <field name="state" widget="statusbar" clickable="1"
+                               statusbar_visible="draft,confirmed,cancelled"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_users" type="object"
+                                    class="oe_stat_button"
+                                    help="List of machine users that have been downloaded for this machine in Odoo"
+                                    icon="fa-users">
+                                <field name="device_users_count" widget="statinfo"
+                                       string="Users"/>
+                            </button>
+                            <button name="action_view_mapped_employees" type="object"
+                                    class="oe_stat_button" icon="fa-user-secret"
+                                    help="List of employees that have been mapped with this machine's users">
+                                <field name="mapped_employees_count" widget="statinfo"
+                                       string="Employees"/>
+                            </button>
+                            <button name="action_view_finger_template" type="object"
+                                    class="oe_stat_button" icon="fa-address-card"
+                                    help="Show fingerprint templates of this employee">
+                                <field name="total_finger_template_records"
+                                       widget="statinfo"/>
+                            </button>
+                            <button name="action_view_attendance_data" type="object"
+                                    class="oe_stat_button" icon="fa-calendar-check-o"
+                                    help="List of attendance records retrieved from the machine">
+                                <field name="total_att_records" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" invisible="active == True"/>
+                        <group>
+                            <field name="active" invisible="1"/>
+                            <group>
+                                <field name="name"/>
+                                <field name="ip"
+                                       groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                <field name="port"
+                                       groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                <field name="protocol"
+                                       groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                <field name="password" password="True"
+                                       groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                <field name="user_id"/>
+                                <field name="location_id"/>
+                                <field name="last_attendance_download"/>
+                                <field name="company_id" groups="base.group_multi_company"
+                                       options="{'no_create': True}"/>
+                            </group>
+                            <group>
+                                <field name="oem_vendor"/>
+                                <field name="device_name"/>
+                                <field name="serialnumber"/>
+                                <field name="platform" groups="base.group_no_one"/>
+                                <field name="firmware_version"/>
+                                <field name="work_code" groups="base.group_no_one"/>
+                                <field name="fingerprint_algorithm"
+                                       groups="base.group_no_one"/>
+                                <field name="unaccent_user_name"
+                                       groups="hr_attendance.group_hr_attendance_own_reader"/>
+                            </group>
+                        </group>
+                        <div>
+                            <label for="description"/>
+                            <div>
+                                <field name="description"/>
+                            </div>
+                        </div>
+                        <notebook>
+                            <page name="attendance_status_code"
+                                  string="Attendance Status Codes">
+                                <group>
+                                    <field name="ignore_unknown_code"/>
+                                </group>
+                                <field name="attendance_device_state_line_ids">
+                                    <tree name="attendance_device_state_line_ids"
+                                          editable="bottom">
+                                        <field name="attendance_state_id"/>
+                                        <field name="code"/>
+                                        <field name="activity_id"/>
+                                        <field name="type"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="unmapped_device_users"
+                                  string="Unmapped Machine Users" invisible="umapped_device_user_ids == []">
+                                <field name="umapped_device_user_ids">
+                                    <tree name="umapped_device_user_ids" nolable="1"
+                                          editable="bottom">
+                                        <field name="id" invisible="1"/>
+                                        <field name="name"/>
+                                        <field name="user_id" readonly="id > 0"/>
+                                        <field name="employee_id"/>
+                                        <field name="password" groups="base.group_no_one"
+                                               password="True"/>
+                                        <field name="group_id" groups="base.group_no_one"/>
+                                        <field name="privilege" groups="base.group_no_one"/>
+                                        <field name="uid" groups="base.group_no_one"/>
+                                        <field name="del_user" groups="base.group_no_one"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="unmapped_employees" string="Unmapped Employees"
+                                  invisible="unmapped_employee_ids == []">
+                                <field name="unmapped_employee_ids">
+                                    <tree name="unmapped_employee_ids">
+                                        <field name="name"/>
+                                        <field name="department_id"/>
+                                        <field name="job_id"/>
+                                        <field name="parent_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="tech_settings" string="Technical Settings">
+                                <group>
+                                    <group>
+                                        <field name="timeout"
+                                               groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                        <field name="tz"
+                                               groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                        <field name="unique_uid" groups="base.group_no_one"/>
+                                        <field name="omit_ping" groups="base.group_no_one"/>
+                                        <field name="max_size_TCP" groups="base.group_no_one"/>
+                                        <field name="max_size_UDP" groups="base.group_no_one"/>
+                                    </group>
+                                    <group>
+                                        <field name="map_before_dl"
+                                               groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                        <field name="create_employee_during_mapping"
+                                               groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                        <field name="download_error_notification"
+                                               groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                        <field name="auto_clear_attendance"/>
+                                        <field name="auto_clear_attendance_schedule"
+                                               invisible="auto_clear_attendance == False"
+                                               groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                        <field name="auto_clear_attendance_hour"
+                                               widget="float_time"
+                                               invisible="auto_clear_attendance == False or auto_clear_attendance_schedule == 'on_download_complete'"
+                                               groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                        <field name="auto_clear_attendance_dow"
+                                               invisible="auto_clear_attendance == False or auto_clear_attendance_schedule == 'on_download_complete'"
+                                               groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                        <field name="auto_clear_attendance_error_notif"
+                                               invisible="auto_clear_attendance == False"/>
+                                        <field name="debug_message"
+                                               groups="hr_attendance.group_hr_attendance_own_reader"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_device_tree" model="ir.ui.view">
+            <field name="name">attendance.device.tree</field>
+            <field name="model">attendance.device</field>
+            <field name="arch" type="xml">
+                <tree string="Attendance Machines"
+                      decoration-bf="message_needaction==True"
+                      decoration-muted="state=='cancelled'">
+                    <field name="message_needaction" invisible="1"/>
+                    <field name="name"/>
+                    <field name="oem_vendor"/>
+                    <field name="device_name"/>
+                    <field name="ip"/>
+                    <field name="port"/>
+                    <field name="last_attendance_download"/>
+                    <field name="location_id"/>
+                    <field name="tz"/>
+                    <field name="device_users_count"/>
+                    <field name="mapped_employees_count"/>
+                    <field name="total_att_records"/>
+                    <field name="auto_clear_attendance"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attendance_device_filter" model="ir.ui.view">
+            <field name="name">attendance.device.filter</field>
+            <field name="model">attendance.device</field>
+            <field name="arch" type="xml">
+                <search string="Search Attendance Machines">
+                    <field name="name"
+                           filter_domain="['|', ('name','ilike',self), ('device_name','=like',str(self)+'%')]"
+                           string="Machine"/>
+                    <field name="oem_vendor"/>
+                    <separator/>
+                    <filter name="inactive" string="Inactive"
+                            domain="[('active','=',False)]"/>
+                    <separator/>
+                    <filter name="draft" string="Draft"
+                            domain="[('state','=','draft')]"/>
+                    <filter name="confirmed" string="Confirmed"
+                            domain="[('state','=','confirmed')]"/>
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window"
+                id="attendance_device_list_action">
+            <field name="name">Machine Information</field>
+            <field name="res_model">attendance.device</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="view_device_tree"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create the first attendance machine
+                </p>
+            </field>
+        </record>
+
+        <record id="action_server_fetch_attendance_data" model="ir.actions.server">
+            <field name="name">Download Attendance Data</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_attendance_device"/>
+            <field name="binding_model_id" ref="model_attendance_device"/>
+            <field name="binding_view_types">list</field>
+            <field name="state">code</field>
+            <field name="code">records.action_fetch_attendance_data()</field>
+        </record>
+
+        <record id="action_server_get_device_info" model="ir.actions.server">
+            <field name="name">Get Machine Info</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_attendance_device"/>
+            <field name="binding_model_id" ref="model_attendance_device"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">records.action_device_information()</field>
+        </record>
+
+        <record id="action_server_user_upload" model="ir.actions.server">
+            <field name="name">Upload Users</field>
+            <field name="model_id" ref="model_attendance_device"/>
+            <field name="binding_model_id" ref="model_attendance_device"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_user_upload()</field>
+        </record>
+
+        <record id="action_server_user_download" model="ir.actions.server">
+            <field name="name">Download Users</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_attendance_device"/>
+            <field name="binding_model_id" ref="model_attendance_device"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_user_download()</field>
+        </record>
+
+        <record id="action_server_employee_map" model="ir.actions.server">
+            <field name="name">Map Employees</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_attendance_device"/>
+            <field name="binding_model_id" ref="model_attendance_device"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_employee_map()</field>
+        </record>
+
+        <record id="action_server_finger_template_download" model="ir.actions.server">
+            <field name="name">Download Fingerprints</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_attendance_device"/>
+            <field name="binding_model_id" ref="model_attendance_device"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_finger_template_download()</field>
+        </record>
+
+        <record id="action_server_clear_attendance_data" model="ir.actions.server">
+            <field name="name">Clear Attendance Data</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_attendance_device"/>
+            <field name="binding_model_id" ref="model_attendance_device"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_clear_attendance_data()</field>
+        </record>
+
+        <record id="action_server_show_device_time" model="ir.actions.server">
+            <field name="name">Show Machine Time</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_attendance_device"/>
+            <field name="binding_model_id" ref="model_attendance_device"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_show_time()</field>
+        </record>
+
+        <record id="action_server_device_restart" model="ir.actions.server">
+            <field name="name">Restart Machine</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_attendance_device"/>
+            <field name="binding_model_id" ref="model_attendance_device"/>
+            <field name="binding_view_types">form</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_restart()</field>
+        </record>
+
+        <menuitem id="attendace_device_menu"
+                  name="Attendance Machines"
+                  parent="hr_attendance.menu_hr_attendance_root" sequence="29"
+                  groups="hr_attendance.group_hr_attendance_manager"/>
+
+        <menuitem id="default_attendace_device_manager_menu"
+                  name="Machines Manager" parent="attendace_device_menu"
+                  action="attendance_device_list_action" sequence="1"
+                  groups="hr_attendance.group_hr_attendance_manager"/>
+
+    </data>
+</odoo>

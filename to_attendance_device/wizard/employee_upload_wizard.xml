@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <record model="ir.ui.view" id="wizard_form_view">
+            <field name="name">Employee Upload wizard</field>
+            <field name="model">employee.upload.wizard</field>
+            <field name="arch" type="xml">
+                <form string="Synchronize Data">
+                    <div>
+                        This wizard will upload selected employees to the selected machine.
+                        <br/>
+                        Note: In case you get timeout error, please try on reducing
+                        number
+                        of employees to upload.
+                    </div>
+                    <group>
+                        <group>
+                            <field name="device_ids" widget="many2many_tags" domain="[('state', '!=', 'cancelled')]"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page id="unmapped_employees" string="Unmapped Employees">
+                            <field name="employee_ids"/>
+                        </page>
+                        <page id="upload_details" string="Upload Details">
+                            <field name="line_ids">
+                                <tree editable="bottom">
+                                    <field name="employee_id"/>
+                                    <field name="device_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                    <footer>
+                        <button name="action_employee_upload" type="object"
+                                groups="hr_attendance.group_hr_attendance_manager"
+                                string="Upload Employees" class="oe_highlight"/>
+                        <button special="cancel" string="Cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_employee_upload" model="ir.actions.act_window">
+            <field name="name">Upload to Attendance Machine</field>
+            <field name="res_model">employee.upload.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+            <field name="context">{'employee_ids':active_ids}</field>
+            <field name="binding_model_id" ref="model_hr_employee"/>
+            <field name="binding_type">action</field>
+        </record>
+
+    </data>
+</odoo>

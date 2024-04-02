@@ -6,11 +6,15 @@
             <field name="inherit_id" ref="account.view_move_form"/>
             <field name="arch" type="xml">
                 <xpath expr="//field[@name='partner_id']" position="after">
-                    <field name="change_analytic_distribution" invisible="1"/>
+                    <field name="change_analytic_distribution" invisible="0"/>
                 </xpath>
-                <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='analytic_distribution']"
-                       position="attributes">
-                    <attribute name="required">parent.change_analytic_distribution == False</attribute>
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='analytic_distribution']"
+                       position="replace">
+                    <field name="analytic_distribution" widget="analytic_distribution"
+                           groups="analytic.group_analytic_accounting" optional="show"
+                           required="parent.change_analytic_distribution == False"
+                           options="{'product_field': 'product_id', 'account_field': 'account_id', 'amount_field': 'price_subtotal'}"
+                           business_domain_compute="parent.move_type in ['out_invoice', 'out_refund', 'out_receipt'] and 'invoice' or parent.move_type in ['in_invoice', 'in_refund', 'in_receipt'] and 'bill' or 'general'"/>
                 </xpath>
             </field>
         </record>

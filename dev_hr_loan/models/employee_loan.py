@@ -141,13 +141,9 @@ class EmployeeLoan(models.Model):
 
     @api.model
     def create_loan_portal(self, values):
-        print(values)
         if not (self.env.user.employee_id):
             raise AccessDenied()
-        user = self.env.user
         self = self.sudo()
-        # and values['manager_id']
-        print(values)
         if not (values['description'] and values['loan_type'] and values['date'] and values['request_loan_amount'] and
                 values['request_term'] and values['request_notes']):
             return {

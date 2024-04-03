@@ -64,13 +64,12 @@ Manage Employee Loan and Integrated with Payroll
         'views/hr_loan_dashbord.xml',
         'views/loan_document.xml',
         'views/loan_report_views.xml',
-        # 'views/templates.xml',
-
+        'views/templates.xml',
     ],
     "assets": {
         "web.assets_frontend": [
-            "dev_hr_loan/static/src/js/loan_portal.js",
-            "dev_hr_loan/static/src/js/portal_loans.js"
+            # "dev_hr_loan/static/src/js/loan_portal.js",
+            # "dev_hr_loan/static/src/js/portal_loans.js"
         ]
     },
     'images': ['images/main_screenshot.png'],

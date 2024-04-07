@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_stock_internal_transfer_view" model="ir.ui.view">
+        <field name="name">Enter Transfer Details</field>
+        <field name="model">wizard.stock.internal.transfer</field>
+        <field name="arch" type="xml">
+            <form string="Transfer Details">
+                <group string="Products To Move">
+                    <div class="oe_grey" groups="stock.group_tracking_lot">
+                        Setting a product and a source package means that the product will be taken out of the package.
+                    </div>
+                </group>
+                <group>
+                    <field name="item_ids" nolabel="1" readonly="1">
+                        <tree string="Inventory Details" editable="bottom">
+                            <field name="product_id" required="1"/>
+                            <field name="product_qty"/>
+                            <field name="product_uom_id" options="{&quot;no_open&quot;: True}"
+                                   groups="product.group_uom"/>
+                            <field name="source_location_id" required="1"/>
+                            <field name="dest_location_id" required="1"/>
+                        </tree>
+                    </field>
+                </group>
+                <group string="Packages To Move" groups="stock.group_tracking_lot">
+                    <div class="oe_grey">
+                        The source package will be moved entirely. If you specify a destination package, the source
+                        package will be put in the destination package.
+                    </div>
+                </group>
+                <footer>
+                    <button name="button_confirm" string="Apply" type="object" class="oe_highlight"/>
+                    or
+                    <button string="_Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

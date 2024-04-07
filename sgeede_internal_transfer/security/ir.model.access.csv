@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_stock_internal_transfer,stock.internal.transfer,model_stock_internal_transfer,,1,1,1,1
+access_stock_internal_transfer_line,stock.internal.transfer.line,model_stock_internal_transfer_line,,1,1,1,1
+access_wizard_stock_internal_transfer,wizard.stock.internal.transfer,model_wizard_stock_internal_transfer,,1,1,1,1
+access_stock_internal_transfer_items,stock.internal.transfer.items,model_stock_internal_transfer_items,,1,1,1,1

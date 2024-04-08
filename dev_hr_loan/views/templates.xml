@@ -23,10 +23,11 @@
     <template id="portal_my_loans" name="Portal My Loans : Loans entries"
               inherit_id="portal.portal_my_home" priority="20">
         <xpath expr="//div[hasclass('o_portal_docs')]" position="inside">
-            <t t-if="request.env.user.employee_id" t-call="portal.portal_docs_entry">
+            <t t-call="portal.portal_docs_entry">
                 <t t-set="title">My Loans</t>
                 <t t-set="url" t-value="'/my/loans'"/>
-                <t t-set="count" t-value="loans_count"/>
+                <t t-set="text">Display your Loans</t>
+                <t t-set="config_card" t-value="True"/>
             </t>
         </xpath>
     </template>
@@ -37,13 +38,13 @@
             <t t-set="breadcrumbs_searchbar" t-value="True"/>
             <t t-call="portal.portal_searchbar">
                 <t t-set="title">Loans</t>
-                <div class="form-inline ml-lg-4" t-if="request.env.user.employee_id">
-                    <button class="btn btn-success btn-sm" name='new_loans' data-toggle="modal"
-                            data-target=".modal_new_loan" title="Add New Loan" aria-label="Add New Loan">
-                        <i class="fa fa-plus"/>
-                        Create New
-                    </button>
-                </div>
+                <!--                <div class="form-inline ml-lg-4" t-if="request.env.user.employee_id">-->
+                <!--                    <button class="btn btn-success btn-sm" name='new_loans' data-toggle="modal"-->
+                <!--                            data-target=".modal_new_loan" title="Add New Loan" aria-label="Add New Loan">-->
+                <!--                        <i class="fa fa-plus"/>-->
+                <!--                        Create New-->
+                <!--                    </button>-->
+                <!--                </div>-->
             </t>
             <div class="modal fade modal_new_loan" role="form">
                 <div class="modal-dialog">
@@ -259,250 +260,10 @@
                             </div>
                         </div>
                         <div>
-                            <!--                            <div role="dialog" class="modal fade modal_edit_timeoff">-->
-                            <!--                                <div class="modal-dialog">-->
-                            <!--                                    <form method="POST" class="js_accept_json modal-content js_website_submit_form edit_loan_form">-->
-                            <!--                                        <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>-->
-                            <!--                                        <input type="hidden" name="timeoff_id" class="timeoff_id" t-att-value="timeoff.id"/>-->
-                            <!--                                        <header class="modal-header">-->
-                            <!--                                            <h4 class="modal-title">Edit Time Off</h4>-->
-                            <!--                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>-->
-                            <!--                                        </header>-->
-                            <!--                                        <main class="modal-body" id="sign-dialog">-->
-                            <!--                                            <div class="form-group">-->
-                            <!--                                                <label class="col-form-label" for="name">Description</label>-->
-                            <!--                                                <input type="text" class="form-control name" name="name" t-att-value="timeoff.name" placeholder="Description"/>-->
-                            <!--                                            </div>-->
-                            <!--                                            <div class="form-group">-->
-                            <!--                                                <label for="timeoff">Time off Type</label>-->
-                            <!--                                                <select name="holiday_status_id" class="form-control time_off_type_select holiday_status_id" required="True">-->
-                            <!--                                                    <t t-foreach="holiday_types or []" t-as="htype">-->
-                            <!--                                                        <option t-att-value="htype[0]" t-att-selected="htype[0] == timeoff.holiday_status_id.id">-->
-                            <!--                                                            <t t-esc="htype[1]" />-->
-                            <!--                                                        </option>-->
-                            <!--                                                    </t>-->
-                            <!--                                                </select>-->
-                            <!--                                            </div>-->
-                            <!--                                            <div class="row">-->
-                            <!--                                                <div class="form-group col-md-6">-->
-                            <!--                                                    <label class="control-label" for="date_from">From</label>-->
-                            <!--                                                    <div class="input-group date">-->
-                            <!--                                                        <input type="date" name="request_date_from" class="form-control date_from request_date_from" t-att-value="timeoff.request_date_from" data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD"/>-->
-                            <!--                                                        <div class="input-group-append">-->
-                            <!--                                                            <span class="input-group-text">-->
-                            <!--                                                                <span class="fa fa-calendar" role="img" aria-label="Calendar"></span>-->
-                            <!--                                                            </span>-->
-                            <!--                                                        </div>-->
-                            <!--                                                    </div>-->
-                            <!--                                                </div>-->
-                            <!--                                                <div class="form-group col-md-6">-->
-                            <!--                                                    <label class="control-label" for="date_to">To</label>-->
-                            <!--                                                    <div class="input-group date">-->
-                            <!--                                                        <input type="date" name="request_date_to" class="form-control date_to request_date_to" t-att-value="timeoff.request_date_to" data-date-format="YYYY-MM-DD" placeholder="YYYY-MM-DD"/>-->
-                            <!--                                                        <div class="input-group-append">-->
-                            <!--                                                            <span class="input-group-text">-->
-                            <!--                                                                <span class="fa fa-calendar" role="img" aria-label="Calendar"></span>-->
-                            <!--                                                            </span>-->
-                            <!--                                                        </div>-->
-                            <!--                                                    </div>-->
-                            <!--                                                </div>-->
-                            <!--                                            </div>-->
-                            <!--                                            <div class="row">-->
-                            <!--                                                <div class="form-group col-md-3 mt16 half_day_option">-->
-                            <!--                                                    <label class="control-label"></label>-->
-                            <!--                                                    <input type="checkbox" name="request_unit_half" id="half_day_input_id" t-att-checked="timeoff.request_unit_half" class="request_unit_half">-->
-                            <!--                                                        <label for="half_day" class="control-label">&#160;Half Day</label>-->
-                            <!--                                                    </input>-->
-                            <!--                                                </div>-->
-                            <!--                                                <div class="form-group col-md-3 mt16 custom_hrs_option">-->
-                            <!--                                                    <label class="control-label"></label>-->
-                            <!--                                                    <input type="checkbox" name="request_unit_hours" id="unit_hours_input_id" t-att-checked="timeoff.request_unit_hours" class="request_unit_hours">-->
-                            <!--                                                        <label for="unit_hours" class="control-label">&#160;Custom Hours</label>-->
-                            <!--                                                    </input>-->
-                            <!--                                                </div>-->
-                            <!--                                                <div class="form-group col-md-3 mt16 custom_hour_divs" style="display:none;">-->
-                            <!--                                                    <label class="control-label">From</label>-->
-                            <!--                                                    <select name="request_hour_from" t-att-selected="request_hour_from == timeoff.request_hour_from" class="form-control select_period_select request_hour_from">-->
-                            <!--                                                        <option value=""></option>-->
-                            <!--                                                        <option value="0">12:00 PM</option>-->
-                            <!--                                                        <option value="0.5">0:30 AM</option>-->
-
-                            <!--                                                        <option value="1">1:00 AM</option>-->
-                            <!--                                                        <option value="1.5">1:30 AM</option>-->
-
-                            <!--                                                        <option value="2">2:00 AM</option>-->
-                            <!--                                                        <option value="2.5">2:30 AM</option>-->
-
-                            <!--                                                        <option value="3">3:00 AM</option>-->
-                            <!--                                                        <option value="3.5">3:30 AM</option>-->
-
-                            <!--                                                        <option value="4">4:00 AM</option>-->
-                            <!--                                                        <option value="4.5">4:30 AM</option>-->
-
-                            <!--                                                        <option value="5">5:00 AM</option>-->
-                            <!--                                                        <option value="5.5">5:30 AM</option>-->
-
-                            <!--                                                        <option value="6">6:00 AM</option>-->
-                            <!--                                                        <option value="6.5">6:30 AM</option>-->
-
-                            <!--                                                        <option value="7">7:00 AM</option>-->
-                            <!--                                                        <option value="7.5">7:30 AM</option>-->
-
-                            <!--                                                        <option value="8">8:00 AM</option>-->
-                            <!--                                                        <option value="8.5">8:30 AM</option>-->
-
-                            <!--                                                        <option value="9">9:00 AM</option>-->
-                            <!--                                                        <option value="9.5">9:30 AM</option>-->
-
-                            <!--                                                        <option value="10">10:00 AM</option>-->
-                            <!--                                                        <option value="10.5">10:30 AM</option>-->
-
-                            <!--                                                        <option value="11">11:00 AM</option>-->
-                            <!--                                                        <option value="11.5">11:30 AM</option>-->
-
-                            <!--                                                        <option value="12">12:00 AM</option>-->
-                            <!--                                                        <option value="12.5">0:30 PM</option>-->
-
-                            <!--                                                        <option value="13">1:00 PM</option>-->
-                            <!--                                                        <option value="13.5">1:30 PM</option>-->
-
-                            <!--                                                        <option value="14">2:00 PM</option>-->
-                            <!--                                                        <option value="14.5">2:30 PM</option>-->
-
-                            <!--                                                        <option value="15">3:00 PM</option>-->
-                            <!--                                                        <option value="15.5">3:30 PM</option>-->
-
-                            <!--                                                        <option value="16">4:00 PM</option>-->
-                            <!--                                                        <option value="16.5">4:30 PM</option>-->
-
-                            <!--                                                        <option value="17">5:00 PM</option>-->
-                            <!--                                                        <option value="17.5">5:30 PM</option>-->
-
-                            <!--                                                        <option value="18">6:00 PM</option>-->
-                            <!--                                                        <option value="18.5">6:30 PM</option>-->
-
-                            <!--                                                        <option value="19">7:00 PM</option>-->
-                            <!--                                                        <option value="19.5">7:30 PM</option>-->
-
-                            <!--                                                        <option value="20">8:00 PM</option>-->
-                            <!--                                                        <option value="20.5">8:30 PM</option>-->
-
-                            <!--                                                        <option value="21">9:00 PM</option>-->
-                            <!--                                                        <option value="21.5">9:30 PM</option>-->
-
-                            <!--                                                        <option value="22">10:00 PM</option>-->
-                            <!--                                                        <option value="22.5">10:30 PM</option>-->
-
-                            <!--                                                        <option value="23">11:00 PM</option>-->
-                            <!--                                                        <option value="23.5">11:30 PM</option>-->
-                            <!--                                                    </select>-->
-                            <!--                                                </div>-->
-                            <!--                                                <div class="form-group col-md-3 mt16 custom_hour_divs" style="display:none;">-->
-                            <!--                                                    <label class="control-label">To</label>-->
-                            <!--                                                    <select name="request_hour_to" t-att-selected="request_hour_to == timeoff.request_hour_to" class="form-control select_period_select request_hour_to">-->
-                            <!--                                                        <option value=""></option>-->
-                            <!--                                                        <option value="0">12:00 PM</option>-->
-                            <!--                                                        <option value="0.5">0:30 AM</option>-->
-
-                            <!--                                                        <option value="1">1:00 AM</option>-->
-                            <!--                                                        <option value="1.5">1:30 AM</option>-->
-
-                            <!--                                                        <option value="2">2:00 AM</option>-->
-                            <!--                                                        <option value="2.5">2:30 AM</option>-->
-
-                            <!--                                                        <option value="3">3:00 AM</option>-->
-                            <!--                                                        <option value="3.5">3:30 AM</option>-->
-
-                            <!--                                                        <option value="4">4:00 AM</option>-->
-                            <!--                                                        <option value="4.5">4:30 AM</option>-->
-
-                            <!--                                                        <option value="5">5:00 AM</option>-->
-                            <!--                                                        <option value="5.5">5:30 AM</option>-->
-
-                            <!--                                                        <option value="6">6:00 AM</option>-->
-                            <!--                                                        <option value="6.5">6:30 AM</option>-->
-
-                            <!--                                                        <option value="7">7:00 AM</option>-->
-                            <!--                                                        <option value="7.5">7:30 AM</option>-->
-
-                            <!--                                                        <option value="8">8:00 AM</option>-->
-                            <!--                                                        <option value="8.5">8:30 AM</option>-->
-
-                            <!--                                                        <option value="9">9:00 AM</option>-->
-                            <!--                                                        <option value="9.5">9:30 AM</option>-->
-
-                            <!--                                                        <option value="10">10:00 AM</option>-->
-                            <!--                                                        <option value="10.5">10:30 AM</option>-->
-
-                            <!--                                                        <option value="11">11:00 AM</option>-->
-                            <!--                                                        <option value="11.5">11:30 AM</option>-->
-
-                            <!--                                                        <option value="12">12:00 AM</option>-->
-                            <!--                                                        <option value="12.5">0:30 PM</option>-->
-
-                            <!--                                                        <option value="13">1:00 PM</option>-->
-                            <!--                                                        <option value="13.5">1:30 PM</option>-->
-
-                            <!--                                                        <option value="14">2:00 PM</option>-->
-                            <!--                                                        <option value="14.5">2:30 PM</option>-->
-
-                            <!--                                                        <option value="15">3:00 PM</option>-->
-                            <!--                                                        <option value="15.5">3:30 PM</option>-->
-
-                            <!--                                                        <option value="16">4:00 PM</option>-->
-                            <!--                                                        <option value="16.5">4:30 PM</option>-->
-
-                            <!--                                                        <option value="17">5:00 PM</option>-->
-                            <!--                                                        <option value="17.5">5:30 PM</option>-->
-
-                            <!--                                                        <option value="18">6:00 PM</option>-->
-                            <!--                                                        <option value="18.5">6:30 PM</option>-->
-
-                            <!--                                                        <option value="19">7:00 PM</option>-->
-                            <!--                                                        <option value="19.5">7:30 PM</option>-->
-
-                            <!--                                                        <option value="20">8:00 PM</option>-->
-                            <!--                                                        <option value="20.5">8:30 PM</option>-->
-
-                            <!--                                                        <option value="21">9:00 PM</option>-->
-                            <!--                                                        <option value="21.5">9:30 PM</option>-->
-
-                            <!--                                                        <option value="22">10:00 PM</option>-->
-                            <!--                                                        <option value="22.5">10:30 PM</option>-->
-
-                            <!--                                                        <option value="23">11:00 PM</option>-->
-                            <!--                                                        <option value="23.5">11:30 PM</option>-->
-                            <!--                                                    </select>-->
-                            <!--                                                </div>-->
-                            <!--                                                <div class="form-group col-md-3 mt16 from_period_div" id="from_period_div" style="display:none;">-->
-                            <!--                                                    <label class="control-label">From Period</label>-->
-                            <!--                                                    <select name="request_date_from_period" t-att-value="timeoff.request_date_from_period" t-att-selected="request_date_from_period == timeoff.request_date_from_period" class="form-control request_date_from_period" id="select_from_period">-->
-                            <!--                                                        <option value="am">Morning</option>-->
-                            <!--                                                        <option value="pm">Afternoon</option>-->
-                            <!--                                                    </select>-->
-                            <!--                                                </div>-->
-                            <!--                                            </div>-->
-                            <!--                                        </main>-->
-                            <!--                                        <footer class="modal-footer">-->
-                            <!--                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>-->
-                            <!--                                            <button t-attf-class="btn btn-primary edit_loan_confirm">Confirm</button>-->
-                            <!--                                        </footer>-->
-                            <!--                                    </form>-->
-                            <!--                                </div>-->
-                            <!--                            </div>-->
                         </div>
                     </div>
                 </t>
             </t>
-            <!-- <div class="mt32">
-                <h4><strong>Message and communication history</strong></h4>
-                <div class="mt16">
-                <h1 t-esc="object"/>
-                    <t t-call="portal.message_thread">
-                        <t t-set="object" t-value="leaves"/>
-                    </t>
-                </div>
-            </div> -->
         </t>
     </template>
 

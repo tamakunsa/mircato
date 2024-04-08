@@ -79,16 +79,12 @@ class WebsiteAccount(CustomerPortal):
             order = "loan_type_id, %s" % order
         # content according to pager and archive selected
         loans = HrLoans.search(domain, order=order, limit=self._items_per_page, offset=pager['offset'])
-        print(loans)
-        print(domain)
-        print(HrLoans.search(domain))
         if groupby == 'none':
             grouped_loans = []
             if loans:
                 grouped_loans = [loans]
         else:
             grouped_loans = [Loans_sudo.concat(*g) for k, g in groupbyelem(loans, itemgetter('loan_type_id'))]
-        print(grouped_loans, '99999999999999999')
         values.update({
             'date': date_begin,
             'loans': loans,

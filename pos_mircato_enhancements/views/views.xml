@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record id="view_pos_order_filter_mircato_enhancements" model="ir.ui.view">
+            <field name="name">pos.order.list.select.mircato.inherit</field>
+            <field name="model">pos.order</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_order_filter"/>
+            <field name="arch" type="xml">
+                <field name="partner_id" position="after">
+                    <field string="Phone" name="phone"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>

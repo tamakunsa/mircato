@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="PartnerMircato" t-inherit="point_of_sale.PartnerDetailsEdit" t-inherit-mode="extension">
+        <xpath expr="//t[@t-as='item']" position="replace">
+            <t t-foreach="['Street', 'City', 'Zip', 'Email', 'Phone', 'Mobile', 'Barcode' ]" t-as="item" t-key="item">
+                    <div class="partner-detail col">
+                        <label class="form-label label" t-attf-for="{{item}}" t-esc="item"/>
+                        <input
+                            class="detail form-control"
+                            t-attf-id="{{item}}"
+                            t-attf-name="{{item}}"
+                            t-model="changes[item.toLowerCase()]"
+                            t-attf-placeholder="{{item}}"
+                            t-att="{'disabled': isFieldCommercialAndPartnerIsChild(item)}"
+                            t-att-class="{'border-danger': missingFields.includes(item.toLowerCase())}" 
+                            t-ref="{{item}}"
+                        />
+                    </div>
+            </t>
+        </xpath>
+    </t>
+
+</templates>

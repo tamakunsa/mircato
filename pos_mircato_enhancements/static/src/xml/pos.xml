@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="OrderReceipt" t-inherit="point_of_sale.OrderReceipt" t-inherit-mode="extension" owl="1">
+        <xpath expr="//div[@class='pos-receipt-amount'][1]" position="after">
+            <div class="pos-receipt-amount">
+                اجمالي عدد القطع
+                <span t-esc='props.data.total_qty' class="pos-receipt-right-align"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

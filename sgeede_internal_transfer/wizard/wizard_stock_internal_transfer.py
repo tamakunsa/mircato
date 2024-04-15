@@ -137,11 +137,11 @@ class WizardStockInternalTransfer(models.TransientModel):
                     picking_id.action_assign()
                     picking_id.button_validate()
 
-                    immediate_transfer = self.env['stock.immediate.transfer'].create({
-                        'pick_ids': [(4, p.id) for p in picking_id],
-                        'show_transfers': False,
-                    })
-                    immediate_transfer.process()
+                    # immediate_transfer = self.env['stock.immediate.transfer'].create({
+                    #     'pick_ids': [(4, p.id) for p in picking_id],
+                    #     'show_transfers': False,
+                    # })
+                    # immediate_transfer.process()
                     picking_id.state = 'done'
 
                     # picking_obj = self.env['stock.picking'].browse(picking_id.id)
@@ -223,11 +223,11 @@ class WizardStockInternalTransfer(models.TransientModel):
                     picking_id.action_assign()
                     picking_id.button_validate()
 
-                    immediate_transfer = self.env['stock.immediate.transfer'].create({
-                        'pick_ids': [(4, p.id) for p in picking_id],
-                        'show_transfers': False,
-                    })
-                    immediate_transfer.process()
+                    # immediate_transfer = self.env['stock.immediate.transfer'].create({
+                    #     'pick_ids': [(4, p.id) for p in picking_id],
+                    #     'show_transfers': False,
+                    # })
+                    # immediate_transfer.process()
                     picking_id.state = 'done'
 
                     # picking_obj = self.env['stock.picking'].browse(picking_id.id)

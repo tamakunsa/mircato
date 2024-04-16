@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record id="view_pos_order_filter_mircato_enhancements" model="ir.ui.view">
+            <field name="name">pos.daily.sales.reports.wizard.mircato.inherit</field>
+            <field name="model">pos.daily.sales.reports.wizard</field>
+            <field name="inherit_id" ref="point_of_sale.view_pos_daily_sales_reports_wizard"/>
+            <field name="arch" type="xml">
+
+                <label for="pos_session_id" position="replace">
+                </label>
+
+                <field name="pos_session_id" position="replace">
+                    <label string="Branch" for="branch_id"/>
+                    <field name="branch_id" mode="tree" colspan="4"/>
+                    <label string="Date from" for="date_start"/>
+                    <field name="date_start" />
+                    <label string="Date To" for="date_stop"/>
+                    <field name="date_stop"/>
+                    <br></br>
+                    <label string="Pos session" for="pos_session_id"/>
+                    <field name="pos_session_domain" invisible="1"/>
+                    <field name="pos_session_id" domain="pos_session_domain" widget="many2many_tags"/>
+                </field>
+
+
+                <button name="generate_report" position="after">
+                    <button name="print_excel_report" string="Print (Excel)" type="object" class="btn-primary"/>
+                </button>
+            </field>
+        </record>
+    </data>
+</odoo>

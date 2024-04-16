@@ -9,7 +9,8 @@
         'point_of_sale',
     ],
     'data': [
-        'reports/report_sale_details.xml'
+        'reports/report_sale_details.xml',
+        'views/session_report_view.xml'
     ],
     'assets': {
         'point_of_sale.assets': [

@@ -1,16 +1,24 @@
 from odoo import fields, models, api, _
+from datetime import datetime, date
+import datetime as dt
 
 
 class ReportSaleDetails(models.AbstractModel):
     _inherit = 'report.point_of_sale.report_saledetails'
 
     @api.model
-    def get_pos_sale_details(self, session_ids=False):
+    def get_pos_sale_details(self, session_ids=False,date_from=False,date_to=False):
         pos_session = self.env['pos.session'].search([('id', 'in', session_ids)])
 
+        orders_domain = [('session_id', 'in', pos_session.ids),('amount_total', '>', 0.0)]
         # Get total sales data
-        session_pos_orders = self.env['pos.order'].search([('session_id', '=', pos_session.id),
-                                                           ('amount_total', '>', 0.0)])
+        if date_from and date_to:
+            date_from_obj = datetime.strptime(date_from, '%Y-%m-%d').date()
+            date_to_obj = datetime.strptime(date_to, '%Y-%m-%d').date()
+            orders_domain.append(("date_order",'>=',date_from_obj))
+            orders_domain.append(("date_order",'<=',date_to_obj))
+                            
+        session_pos_orders = self.env['pos.order'].search(orders_domain)
 
         total_sales = 0.0
         if session_pos_orders:
@@ -28,9 +36,16 @@ class ReportSaleDetails(models.AbstractModel):
         count_related_invoice = len(session_pos_orders)
         net_sales = total_sales - total_discount
 
+
+        return_orders_domain = [('amount_total', '<', 0.0), ('session_id', 'in', pos_session.ids)]
+        if date_from and date_to:
+            date_from_obj = datetime.strptime(date_from, '%Y-%m-%d').date()
+            date_to_obj = datetime.strptime(date_to, '%Y-%m-%d').date()
+            return_orders_domain.append(("date_order",'>=',date_from_obj))
+            return_orders_domain.append(("date_order",'<=',date_to_obj))
+
         # Get total Returns data
-        returns_pos_orders = self.env['pos.order'].search(
-            [('amount_total', '<', 0.0), ('session_id', '=', pos_session.id)])
+        returns_pos_orders = self.env['pos.order'].search(return_orders_domain)
 
         total_return = sum(returns_pos_orders.mapped('amount_total')) if returns_pos_orders else 0.0
 
@@ -130,12 +145,12 @@ class ReportSaleDetails(models.AbstractModel):
             if r_method not in total_payment_methods:
                 total_payment_methods.append(r_method)
 
-        return {
+        res = {
             'company_id': self.env.company,
-            'date_start': pos_session.start_at,
+            'date_start': min(pos_session.mapped('start_at')),
             'date_stop': fields.Datetime.now(),
             'branch': pos_session.config_id.name,
-            'cahier': pos_session.user_id.name,
+            'cahier': ", ".join(pos_session.mapped('user_id').mapped("name")) if len(pos_session.mapped('user_id')) > 1 else pos_session.user_id.name,
             'total_sales': total_sales,
             'total_discount': total_discount,
             'net_sales': net_sales,
@@ -158,12 +173,20 @@ class ReportSaleDetails(models.AbstractModel):
             't_total_sales_value': t_total_sales_value,
             't_total_discount_value': t_total_discount_value,
             't_net_values': t_net_values,
-            'petty_cash': pos_session.cash_register_balance_start,
+            'petty_cash': min(pos_session.mapped("cash_register_balance_start")),
             't_total_sales': t_total_sales,
             't_total_discount': total_discount,
             't_total_nets': t_total_sales - total_discount,
             'drawer_cash': sales_value - return_value
         }
+
+        if date_from and date_to:
+            res.update({
+                'date_start': date_from,
+                'date_stop': date_to,
+            })
+
+        return res
 
     @api.model
     def _get_report_values(self, docids, data=None):
@@ -172,5 +195,10 @@ class ReportSaleDetails(models.AbstractModel):
         data.update({
             'session_ids': data.get('session_ids') or docids,
         })
-        data.update(self.get_pos_sale_details(data['session_ids']))
+        if data.get("config_ids") and not data.get("session_ids"):
+            data.update({
+                'session_ids':self.env['pos.session'].search([('config_id', 'in', data.get("config_ids"))]).ids
+            })
+
+        data.update(self.get_pos_sale_details(data['session_ids'],data['date_start'],data['date_stop']))
         return data

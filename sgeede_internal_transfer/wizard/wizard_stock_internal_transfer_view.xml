@@ -10,7 +10,7 @@
                         Setting a product and a source package means that the product will be taken out of the package.
                     </div>
                 </group>
-                <group>
+<!--                <group>-->
                     <field name="item_ids" nolabel="1" readonly="1">
                         <tree string="Inventory Details" editable="bottom">
                             <field name="product_id" required="1"/>
@@ -21,7 +21,7 @@
                             <field name="dest_location_id" required="1"/>
                         </tree>
                     </field>
-                </group>
+<!--                </group>-->
                 <group string="Packages To Move" groups="stock.group_tracking_lot">
                     <div class="oe_grey">
                         The source package will be moved entirely. If you specify a destination package, the source
@@ -31,7 +31,7 @@
                 <footer>
                     <button name="button_confirm" string="Apply" type="object" class="oe_highlight"/>
                     or
-                    <button string="_Cancel" class="oe_link" special="cancel"/>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
                 </footer>
             </form>
         </field>

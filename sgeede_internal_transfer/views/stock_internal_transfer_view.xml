@@ -27,7 +27,7 @@
                     <button name="action_draft" type="object" invisible="1" class="oe_highlight" string="Set to Draft"/>
                     <button name="do_enter_wizard" type="object" invisible="state != 'draft'" class="oe_highlight"
                             string="Send"/>
-                    <button name="do_enter_wizard" type="object" readonly="state != 'send'" class="oe_highlight"
+                    <button name="do_enter_wizard" type="object" invisible="state != 'send'" class="oe_highlight"
                             string="Receive"/>
                     <field name="state" widget="statusbar"/>
                 </header>

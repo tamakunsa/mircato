@@ -135,23 +135,8 @@ class WizardStockInternalTransfer(models.TransientModel):
 
                     picking_id.action_confirm()
                     picking_id.action_assign()
-                    picking_id.button_validate()
-
-                    # immediate_transfer = self.env['stock.immediate.transfer'].create({
-                    #     'pick_ids': [(4, p.id) for p in picking_id],
-                    #     'show_transfers': False,
-                    # })
-                    # immediate_transfer.process()
-                    picking_id.state = 'done'
-
-                    # picking_obj = self.env['stock.picking'].browse(picking_id.id)
-                    # # picking_obj.action_confirm()
-                    # # picking_obj.action_assign()
-                    # # picking_obj.button_validate()
-                    # immediate_transfer_obj = self.env['stock.immediate.transfer'].search(
-                    #     [('pick_ids', '=', picking_id.id)])
-                    # immediate_transfer_obj.process()
-                    # picking_obj.action_done()
+                    # picking_id.button_validate()
+                    # picking_id.state = 'done'
                     transfer.state = 'send'
 
                 elif transfer.state == 'send':
@@ -197,13 +182,16 @@ class WizardStockInternalTransfer(models.TransientModel):
                          ('code', '=', 'incoming')], limit=1)
 
                     if types:
-                        picking_id = picking_obj.create({
-                            'picking_type_id': types.id,
-                            'transfer_id': self._context.get('active_ids')[0],
-                            'location_id': company.transit_location_id.id,
-                            'location_dest_id': transfer.dest_warehouse_id.lot_stock_id.id,
-                            'company_id': types.company_id.id,
-                        })
+                        if tf.transfer_id.picking_ids[0].state == 'done':
+                            picking_id = picking_obj.create({
+                                'picking_type_id': types.id,
+                                'transfer_id': self._context.get('active_ids')[0],
+                                'location_id': company.transit_location_id.id,
+                                'location_dest_id': transfer.dest_warehouse_id.lot_stock_id.id,
+                                'company_id': types.company_id.id,
+                            })
+                        else:
+                            raise UserError(_('Please validate sent stock picking first'))
                     else:
                         raise UserError(_('Unable to find destination location in Stock Picking'))
 
@@ -221,24 +209,8 @@ class WizardStockInternalTransfer(models.TransientModel):
 
                     picking_id.action_confirm()
                     picking_id.action_assign()
-                    picking_id.button_validate()
-
-                    # immediate_transfer = self.env['stock.immediate.transfer'].create({
-                    #     'pick_ids': [(4, p.id) for p in picking_id],
-                    #     'show_transfers': False,
-                    # })
-                    # immediate_transfer.process()
-                    picking_id.state = 'done'
-
-                    # picking_obj = self.env['stock.picking'].browse(picking_id.id)
-                    # picking_obj.action_confirm()
-                    # picking_obj.action_assign()
-                    # picking_obj.button_validate()
-                    #
-                    # immediate_transfer_obj = self.env['stock.immediate.transfer'].search(
-                    #     [('pick_ids', '=', picking_obj.id)])
-                    # immediate_transfer_obj.process()
-                    # picking_obj.action_done()
+                    # picking_id.button_validate()
+                    # picking_id.state = 'done'
                     transfer.state = 'done'
 
         return True

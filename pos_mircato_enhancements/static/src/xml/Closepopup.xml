@@ -2,6 +2,8 @@
 <templates id="template" xml:space="preserve">
 
     <t t-name="ClosePosPopup" t-inherit="point_of_sale.ClosePosPopup" t-inherit-mode="extension">
+        <div class="total-orders fw-bolder" position="replace">
+        </div>
         <xpath expr="//div[hasclass('payment-methods-overview')]/table/thead/tr/th[2]" position="attributes">
         <!-- hide expected column -->
             <attribute name='style'>display:none</attribute>

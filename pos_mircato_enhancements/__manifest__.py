@@ -19,6 +19,7 @@
         'point_of_sale._assets_pos': [
             'pos_mircato_enhancements/static/src/xml/partner_editor.xml',
             'pos_mircato_enhancements/static/src/js/partner_editor.js',
+            'pos_mircato_enhancements/static/src/js/pos_store.js',
             'pos_mircato_enhancements/static/src/js/order_reciept.js',
             'pos_mircato_enhancements/static/src/xml/pos.xml',
             'pos_mircato_enhancements/static/src/xml/Closepopup.xml'

@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record id="inherited_account_move_entry_form_view" model="ir.ui.view">
+            <field name="name">account.move.entry.inherited.view</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='line_ids']/tree/field[@name='analytic_distribution']" position="replace">
+                        <field name="analytic_distribution" widget="analytic_distribution"
+                           required = "account_type in ['income', 'expense_direct_cost', 'expense']"
+                           groups="analytic.group_analytic_accounting" optional="show"
+                           options="{'account_field': 'account_id'}"
+                           business_domain_compute="parent.move_type in ['out_invoice', 'out_refund', 'out_receipt'] and 'invoice' or parent.move_type in ['in_invoice', 'in_refund', 'in_receipt'] and 'bill' or 'general'"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

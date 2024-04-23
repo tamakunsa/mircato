@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+    <t t-name="ClosePosPopup" t-inherit="point_of_sale.ClosePosPopup" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('payment-methods-overview')]/table/thead/tr/th[2]" position="attributes">
+        <!-- hide expected column -->
+            <attribute name='style'>display:none</attribute>
+        </xpath>
+        <xpath expr="//div[hasclass('payment-methods-overview')]/table/thead/tr/th[4]" position="attributes">
+            <attribute name='style'>display:none</attribute>
+        <!-- hide differnce column -->
+        </xpath>
+
+        <xpath expr="//div[hasclass('payment-methods-overview')]/table/t[@t-if='pos.config.cash_control']/tbody[1]/tr/td[2]" position="attributes">
+        <!-- hide expected column -->
+            <attribute name='style'>display:none</attribute>
+        </xpath>
+
+        <xpath expr="//div[hasclass('payment-methods-overview')]/table/t[@t-if='pos.config.cash_control']/tbody[1]/tr/td[4]" position="attributes">
+                <attribute name='style'>display:none</attribute>
+        <!-- hide differnce column -->
+        </xpath>
+        <xpath expr="//tbody[hasclass('cash-overview')]" position="attributes">
+                <attribute name='style'>display:none</attribute>
+        </xpath>
+
+        <xpath expr="//tbody[@t-if='props.other_payment_methods.length > 0']/tr/td[@t-esc='env.utils.formatCurrency(pm.amount)']" position="attributes">
+                <attribute name='style'>display:none</attribute>
+        <!-- hide expected column -->
+        </xpath>
+
+        <xpath expr="//tbody[@t-if='props.other_payment_methods.length > 0']/tr/td[@t-esc='env.utils.formatCurrency(getDifference(pm.id))']" position="attributes">
+                <attribute name='style'>display:none</attribute>
+        <!-- hide differnce column -->
+        </xpath>
+
+    </t>
+
+</templates>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_type_barcode_tree">
+            <field name="name">type.code.tree</field>
+            <field name="model">type.code</field>
+            <field name="arch" type="xml">
+                <tree string="Type Barcodes" editable="top">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_type_barcode">
+            <field name="name">Type Barcodes</field>
+            <field name="res_model">type.code</field>
+            <field name="view_mode">tree</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a Type Barcodes
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="type_barcode_root"
+                name="Type Code"
+                parent="stock.menu_product_in_config_stock"
+                action="action_type_barcode"
+                sequence="10"/>
+
+    </data>
+</odoo>

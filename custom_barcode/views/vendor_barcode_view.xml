@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_vendor_barcode_tree">
+            <field name="name">vendor.code.tree</field>
+            <field name="model">vendor.code</field>
+            <field name="arch" type="xml">
+                <tree string="Vendor Barcodes" editable="top">
+                    <field name="name"/>
+                    <field name="code"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_vendor_barcode">
+            <field name="name">Vendor Barcodes</field>
+            <field name="res_model">vendor.code</field>
+            <field name="view_mode">tree</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Add a Vendor Barcode
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="vendor_barcode_root"
+                name="Vendor Code"
+                parent="stock.menu_product_in_config_stock"
+                action="action_vendor_barcode"
+                sequence="12"/>
+    </data>
+</odoo>

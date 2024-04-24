@@ -9,7 +9,7 @@
             <field name="arch" type="xml">
             
             <xpath expr="//header" position="inside">
-                <button name="generate_barcode" string="Generate Barcode" type="object" class="oe_highlight" attrs="{'invisible': [('status', '!=', 'draft')]}"/>
+                <button name="generate_barcode" string="Generate Barcode" type="object" class="oe_highlight" invisible="status != 'draft'"/>
             </xpath>
                 <xpath expr="//field[@name='detailed_type']" position="after">
                     <!-- <field name="barcode_type" widget="selection" string="Barcode Type"/> -->

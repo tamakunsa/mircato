@@ -10,12 +10,14 @@ class PosSession(models.Model):
 
     def _prepare_line(self, order_line):
         res = super(PosSession, self)._prepare_line(order_line)
-        res['analytic_distribution'] = {self.config_id.account_analytic_id.id: 100} or False
+        if self.config_id.account_analytic_id:
+            res['analytic_distribution'] = {self.config_id.account_analytic_id.id: 100}
         return res
 
     def _get_sale_vals(self, key, amount, amount_converted):
         res = super(PosSession, self)._get_sale_vals(key, amount, amount_converted)
-        res['analytic_distribution'] = {self.config_id.account_analytic_id.id: 100} or False
+        if self.config_id.account_analytic_id:
+            res['analytic_distribution'] = {self.config_id.account_analytic_id.id: 100}
         return res
 
     def _get_stock_output_vals(self, out_account, amount, amount_converted):
@@ -24,14 +26,15 @@ class PosSession(models.Model):
         return self._credit_amounts(partial_args, amount, amount_converted, force_company_currency=True)
 
     def _get_stock_expense_vals(self, exp_account, amount, amount_converted):
-        partial_args = {'account_id': exp_account.id, 'move_id': self.move_id.id,
-                        'analytic_distribution': {self.config_id.account_analytic_id.id: 100} or False}
+        partial_args = {'account_id': exp_account.id, 'move_id': self.move_id.id}
+        if self.config_id.account_analytic_id:
+            partial_args['analytic_distribution'] = {self.config_id.account_analytic_id.id: 100}
         return self._debit_amounts(partial_args, amount, amount_converted, force_company_currency=True)
 
     def write(self, vals):
         for session in self:
-            if not session.account_analytic_id:
-                vals['account_analytic_id'] = session.config_id.account_analytic_id or False
+            if session.config_id.account_analytic_id and not session.account_analytic_id:
+                vals['account_analytic_id'] =  session.config_id.account_analytic_id
         return super(PosSession, self).write(vals)
 
     def _reconcile_account_move_lines(self, data):
@@ -73,9 +76,7 @@ class PosSession(models.Model):
             receivable_account = self._get_receivable_account(payment_method)
             for pay_m_line in lines:
                 for rec in pay_m_line.move_id.line_ids:
-                    if rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
-                        rec.update({'analytic_distribution': False})
-                    else:
+                    if  self.config_id.account_analytic_id and rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
                         rec.update({'analytic_distribution': {self.config_id.account_analytic_id.id: 100}})
             if receivable_account.reconcile:
                 lines.filtered(lambda line: not line.reconciled).reconcile()
@@ -83,9 +84,7 @@ class PosSession(models.Model):
         for payment, lines in payment_to_receivable_lines.items():
             for pay_line in lines:
                 for rec in pay_line.move_id.line_ids:
-                    if rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
-                        rec.update({'analytic_distribution': False})
-                    else:
+                    if  self.config_id.account_analytic_id and rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
                         rec.update({'analytic_distribution': {self.config_id.account_analytic_id.id: 100}})
             if payment.partner_id.property_account_receivable_id.reconcile:
                 lines.filtered(lambda line: not line.reconciled).reconcile()
@@ -99,9 +98,7 @@ class PosSession(models.Model):
                     payment_method, self.env['account.move.line'])
                 for line in lines:
                     for rec in line.move_id.line_ids:
-                        if rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
-                            rec.update({'analytic_distribution': False})
-                        else:
+                        if  self.config_id.account_analytic_id and rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
                             rec.update({'analytic_distribution': {self.config_id.account_analytic_id.id: 100}})
                 lines.filtered(lambda line: not line.reconciled).reconcile()
 
@@ -110,9 +107,7 @@ class PosSession(models.Model):
                         split_invoice_receivable_lines.get(payment, self.env['account.move.line'])
                 for line in lines:
                     for rec in line.move_id.line_ids:
-                        if rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
-                            rec.update({'analytic_distribution': False})
-                        else:
+                        if  self.config_id.account_analytic_id and rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
                             rec.update({'analytic_distribution': {self.config_id.account_analytic_id.id: 100}})
                 lines.filtered(lambda line: not line.reconciled).reconcile()
 
@@ -161,9 +156,9 @@ class PosSession(models.Model):
                     st_line_vals['counterpart_account_id'] = self.cash_journal_id.profit_account_id.id
 
             statement = self.env['account.bank.statement.line'].create(st_line_vals)
-            for line in statement.move_id.line_ids:
-                if line.analytic_distribution:
-                    line.update({'analytic_distribution': False})
+            # for line in statement.move_id.line_ids:
+            #     if line.analytic_distribution:
+            #         line.update({'analytic_distribution': False})
 
     def try_cash_in_out(self, _type, amount, reason, extras):
         sign = 1 if _type == 'in' else -1
@@ -181,9 +176,9 @@ class PosSession(models.Model):
             }
             for session in sessions
         ])
-        for line in account_bank_statement_line.move_id.line_ids:
-            if line.analytic_distribution:
-                line.update({'analytic_distribution': False})
+        # for line in account_bank_statement_line.move_id.line_ids:
+        #     if line.analytic_distribution:
+        #         line.update({'analytic_distribution': False})
 
         message_content = [f"Cash {extras['translatedType']}", f'- Amount: {extras["formattedAmount"]}']
         if reason:

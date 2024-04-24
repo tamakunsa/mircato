@@ -21,8 +21,10 @@ class PosSession(models.Model):
         return res
 
     def _get_stock_output_vals(self, out_account, amount, amount_converted):
-        partial_args = {'account_id': out_account.id, 'move_id': self.move_id.id,
-                        'analytic_distribution': False}
+        partial_args = {'account_id': out_account.id, 'move_id': self.move_id.id}
+        if self.config_id.account_analytic_id:
+            rec.update({'analytic_distribution': {self.config_id.account_analytic_id.id: 100}})
+
         return self._credit_amounts(partial_args, amount, amount_converted, force_company_currency=True)
 
     def _get_stock_expense_vals(self, exp_account, amount, amount_converted):
@@ -60,10 +62,9 @@ class PosSession(models.Model):
 
         for line in all_lines:
             for rec in line.move_id.line_ids:
-                if rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
-                    rec.update({'analytic_distribution': False})
-                else:
+                if  self.config_id.account_analytic_id and rec.account_id.account_type not in ('income', 'expense_direct_cost', 'expense'):
                     rec.update({'analytic_distribution': {self.config_id.account_analytic_id.id: 100}})
+
         all_lines.filtered(lambda line: line.move_id.state != 'posted').move_id._post(soft=False)
 
         accounts = all_lines.mapped('account_id')

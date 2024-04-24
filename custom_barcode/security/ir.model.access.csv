@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_type_code,access.type.code,model_type_code,base.group_user,1,1,1,1
+
+access_vendor_code,access.vendor.code,model_vendor_code,base.group_user,1,1,1,1
+
+access_kind_code,access.kind.code,model_kind_code,base.group_user,1,1,1,1
+
+access_price_code,access.price.code,model_price_code,base.group_user,1,1,1,1

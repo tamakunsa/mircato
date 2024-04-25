@@ -23,7 +23,7 @@ class PosSession(models.Model):
     def _get_stock_output_vals(self, out_account, amount, amount_converted):
         partial_args = {'account_id': out_account.id, 'move_id': self.move_id.id}
         if self.config_id.account_analytic_id:
-            rec.update({'analytic_distribution': {self.config_id.account_analytic_id.id: 100}})
+            partial_args.update({'analytic_distribution': {self.config_id.account_analytic_id.id: 100}})
 
         return self._credit_amounts(partial_args, amount, amount_converted, force_company_currency=True)
 

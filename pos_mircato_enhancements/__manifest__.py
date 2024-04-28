@@ -2,7 +2,7 @@
 {
     'name': "Point Of Sale Mircato Enhancement",
 
-    'summary': "Enhancements for mircato",
+    'summary': "POS Enhancements for mircato",
     'author': "Eco-Tech, Omar Amr",
     'website': "https://ecotech.com",
 
@@ -26,6 +26,7 @@
             'pos_mircato_enhancements/static/src/js/pos_store.js',
             'pos_mircato_enhancements/static/src/js/order_reciept.js',
             'pos_mircato_enhancements/static/src/js/refundButton.js',
+            'pos_mircato_enhancements/static/src/js/closeSessionPopup.js',
             'pos_mircato_enhancements/static/src/xml/orderReciept.xml',
             'pos_mircato_enhancements/static/src/xml/Closepopup.xml'
 

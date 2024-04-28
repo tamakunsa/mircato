@@ -200,5 +200,5 @@ class ReportSaleDetails(models.AbstractModel):
                 'session_ids':self.env['pos.session'].search([('config_id', 'in', data.get("config_ids"))]).ids
             })
 
-        data.update(self.get_pos_sale_details(data['session_ids'],data['date_start'],data['date_stop']))
+        data.update(self.get_pos_sale_details(data['session_ids'],data.get('date_start'),data.get('date_stop')))
         return data

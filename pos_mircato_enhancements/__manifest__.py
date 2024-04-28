@@ -11,7 +11,11 @@
 
     # any module necessary for this one to work correctly
     'depends': [
-        'point_of_sale',
+        'point_of_sale','pos_hr'
+    ],
+
+    'data':[
+        'views/employee.xml'
     ],
     'assets': {
         # 'point_of_sale.assets_prod': [
@@ -21,7 +25,8 @@
             'pos_mircato_enhancements/static/src/js/partner_editor.js',
             'pos_mircato_enhancements/static/src/js/pos_store.js',
             'pos_mircato_enhancements/static/src/js/order_reciept.js',
-            'pos_mircato_enhancements/static/src/xml/pos.xml',
+            'pos_mircato_enhancements/static/src/js/refundButton.js',
+            'pos_mircato_enhancements/static/src/xml/orderReciept.xml',
             'pos_mircato_enhancements/static/src/xml/Closepopup.xml'
 
         ],

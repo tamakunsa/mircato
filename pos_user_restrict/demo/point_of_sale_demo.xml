@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="pos_config_second" model="pos.config">
+        <field name="name">Shop 2</field>
+        <field name="iface_start_categ_id" ref="point_of_sale.pos_category_desks"/>
+        <field name="start_category">True</field>
+    </record>
+
+</odoo>

@@ -11,7 +11,7 @@
         'views/price_barcode_view.xml',
         'views/kind_barcode_view.xml',
         'views/type_barcode_view.xml',
-        'views/vendor_barcode_view.xml',
+        # 'views/vendor_barcode_view.xml',
         'views/product_views.xml',
         'security/ir.model.access.csv',
     ],

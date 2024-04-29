@@ -3,6 +3,7 @@
 from odoo import models, api, fields, _
 from datetime import datetime
 import random
+
 # import barcode
 
 try:
@@ -23,8 +24,15 @@ class ProductTemplate(models.Model):
         for record in prouct_ids:
             number_random = int("%0.13d" % random.randint(0, 999999999999))
             bcode = self.env['barcode.nomenclature'].sanitize_ean("%s" % (number_random))
-            print(bcode)
-            record.write({'barcode': bcode})
+
+            if record.price_id != False:
+                bcode = record.price_id.name + bcode
+            if record.kind_id != False:
+                bcode = record.kind_id.name + bcode
+            if record.type_id != False:
+                bcode = record.type_id.name + bcode
+
+            record.write({'barcode': bcode, 'default_code': bcode})
 
 
 class ProductProduct(models.Model):
@@ -54,8 +62,15 @@ class ProductProduct(models.Model):
                 else:
                     number_random = int("%0.13d" % random.randint(0, 999999999999))
                     barcode_str = self.env['barcode.nomenclature'].sanitize_ean("%s" % (number_random))
-                res.write({'barcode': barcode_str,
-                           })
+
+                if res.price_id != False:
+                    barcode_str = res.price_id.name + barcode_str
+                if res.kind_id != False:
+                    barcode_str = res.kind_id.name + barcode_str
+                if res.type_id != False:
+                    barcode_str = res.type_id.name + barcode_str
+
+                res.write({'barcode': barcode_str, 'default_code': barcode_str})
         return res
 
     def v_generate_bulk_barcode(self):
@@ -65,6 +80,14 @@ class ProductProduct(models.Model):
         for record in prouct_ids:
             number_random = int("%0.13d" % random.randint(0, 999999999999))
             bcode = self.env['barcode.nomenclature'].sanitize_ean("%s" % (number_random))
-            record.write({'barcode': bcode})
+
+            if record.price_id != False:
+                bcode = record.price_id.name + bcode
+            if record.kind_id != False:
+                bcode = record.kind_id.name + bcode
+            if record.type_id != False:
+                bcode = record.type_id.name + bcode
+
+            record.write({'barcode': bcode, 'default_code': bcode})
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

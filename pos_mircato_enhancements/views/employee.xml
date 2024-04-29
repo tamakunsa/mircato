@@ -5,7 +5,7 @@
             <field name="model">hr.employee</field>
             <field name="inherit_id" ref="hr.view_employee_form"/>
             <field name="arch" type="xml">
-                <page name="hr_settings" position="after">
+                <page name="public" position="after">
                         <page name="hr_pos_access" string="POS access rights">
                             <group>
                                 <field name="allow_refund"/>

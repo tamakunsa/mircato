@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-inherit="point_of_sale.OrderWidget" t-inherit-mode="extension">
+        <xpath expr="//div[hasclass('subentry')]" position="after">
+            <div class="fs-6 text-muted subentry">
+                Total Qty: <span t-esc="props.lines.reduce((accumulator,line)=> accumulator+line.quantity,0)" class="tax"/>
+            </div>
+        </xpath>
+    </t>
+</templates>

@@ -10,10 +10,26 @@
                             <group>
                                 <field name="allow_refund"/>
                             </group>
-
                         </page>
                 </page>
             </field>
         </record>
+
+        <record id="view_hr_employee_public_form_mircato_enhancements" model="ir.ui.view">
+            <field name="name">hr.employee.public.form.mircato.inherit</field>
+            <field name="model">hr.employee.public</field>
+            <field name="inherit_id" ref="hr.hr_employee_public_view_form"/>
+            <field name="arch" type="xml">
+                <page name="public" position="after">
+                    <page name="hr_pos_configs" string="POS Configurations">
+                        <group>
+                            <field name="allow_refund"/>
+                        </group>
+                    </page>
+                </page>
+            </field>
+        </record>
+
+        
     </data>
 </odoo>

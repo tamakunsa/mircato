@@ -25,10 +25,10 @@
         </record>
 
         <menuitem id="type_barcode_root"
-                name="Type Code"
-                parent="stock.menu_product_in_config_stock"
-                action="action_type_barcode"
-                sequence="10"/>
+                  name="Type Code"
+                  parent="stock.menu_product_in_config_stock"
+                  action="action_type_barcode"
+                  sequence="10"/>
 
     </data>
 </odoo>

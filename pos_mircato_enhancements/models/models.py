@@ -9,6 +9,9 @@ class PosOrder(models.Model):
     phone = fields.Char(related="partner_id.phone",store=True)
 
 
+class HrEmployeePublic(models.Model):
+    _inherit = "hr.employee.public"
+    allow_refund  = fields.Boolean()
 
 
 class PosEmployee(models.Model):

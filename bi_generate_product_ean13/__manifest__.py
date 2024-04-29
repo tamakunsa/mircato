@@ -36,7 +36,7 @@ automatic product sequance generate barcode for product product barcode generato
 """,
     'author': 'BrowseInfo',
     'website': 'http://www.browseinfo.in',
-    'depends': ['base', 'product', 'sale', 'barcodes', 'sale_management'],
+    'depends': ['base', 'product', 'sale', 'barcodes', 'sale_management', 'custom_barcode'],
     'data': [
         'views/generate_product_ean13_view.xml',
         'views/res_config_view.xml',

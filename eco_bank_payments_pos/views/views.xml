@@ -1,0 +1,24 @@
+<odoo>
+  <data>
+      <record id="view_pos_session_form_bank_payments" model="ir.ui.view">
+          <field name="name">pos.session.form.mircato.inherit</field>
+          <field name="model">pos.session</field>
+          <field name="inherit_id" ref="point_of_sale.view_pos_session_form"/>
+          <field name="arch" type="xml">
+              <group  position="after">
+                <notebook>
+                    <page string="Bank Ending Balances">
+                      <field name="bank_payments_ids">
+                          <tree>
+                              <field name="payment_method_id"/>
+                              <field name="counted"/>
+                          </tree>
+                      </field>
+
+                    </page>
+                </notebook>
+              </group>
+          </field>
+      </record>
+  </data>
+</odoo>

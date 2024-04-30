@@ -145,7 +145,33 @@ class ReportSaleDetails(models.AbstractModel):
             if r_method not in total_payment_methods:
                 total_payment_methods.append(r_method)
 
+
+        # get payment methods
+        payments_expected_and_real = dict()
+
+        all_payment_methods = pos_session.mapped('config_id').payment_method_ids
+        for pm in all_payment_methods:
+            if pm.journal_id.type == 'cash':
+                payments_expected_and_real[pm.id] = {
+                    'name':pm.name,
+                    'real_closing_balance':sum(pos_session.mapped("cash_register_balance_end_real")),
+                    'expected_closing_balance':sum(pos_session.mapped("cash_register_total_entry_encoding")),
+                    'difference_balance':sum(pos_session.mapped("cash_register_balance_end_real"))  - sum(pos_session.mapped("cash_register_total_entry_encoding")),
+                }
+            else:
+                expected_payments_amount = sum(self.env['pos.payment'].search([
+                    ('session_id','in',pos_session.ids),
+                    ('payment_method_id','=',pm.id)
+                ]).mapped("amount")) or 0
+                payments_expected_and_real[pm.id] = {
+                    'name':pm.name,
+                    'real_closing_balance':sum(pos_session.bank_payments_ids.mapped("counted")),
+                    'expected_closing_balance':expected_payments_amount,
+                    'difference_balance':sum(pos_session.bank_payments_ids.mapped("counted")) - expected_payments_amount,
+                }
+
         res = {
+            'payments_expected_and_real':payments_expected_and_real,
             'company_id': self.env.company,
             'date_start': min(pos_session.mapped('start_at')),
             'date_stop': fields.Datetime.now(),

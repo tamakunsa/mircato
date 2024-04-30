@@ -108,6 +108,53 @@
                             </h6>
                         </span>
                         <br/>
+                        
+                        <div class="text-center">
+                            <h6>
+                                <strong>Session Closing</strong>
+                            </h6>
+                        </div>
+                        <!-- <t t-set="payment_method_expected_real" t-value=""/> -->
+                        <table style="width: 60%;border:1px solid black;">
+                            <tr>
+                                <th style="border:1px solid black;" class="text-center">Payment Method</th>
+                                <th style="border:1px solid black;" class="text-center">Expected</th>
+                                <th style="border:1px solid black;" class="text-center">Counted</th>
+                                <th style="border:1px solid black;" class="text-center">Difference</th>
+                            </tr>
+                            <t t-foreach="payments_expected_and_real" t-as="pm_real_excpected">
+                                <tr>
+                                    <td style="border:1px solid black;" class="text-center">
+                                        <strong>
+                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['name']"/>:
+                                        </strong>
+                                    </td>
+                                    <td style="border:1px solid black;" class="text-center">
+                                        <strong>
+                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['expected_closing_balance']"/>:
+                                        </strong>
+                                    </td>
+
+                                    <td style="border:1px solid black;" class="text-center">
+                                        <strong>
+                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['real_closing_balance']"/>:
+                                        </strong>
+                                    </td>
+
+                                    <td style="border:1px solid black;" class="text-center">
+                                        <strong>
+                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['difference_balance']"/>:
+                                        </strong>
+                                    </td>
+
+
+                                </tr>
+                            </t>
+                        </table>
+                        <br/>
+
+
+
                         <div class="text-center">
                             <h6>
                                 <strong>Total Sales Payment</strong>

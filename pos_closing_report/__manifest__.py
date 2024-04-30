@@ -6,7 +6,7 @@
     'category': 'Products',
     'version': '17.0.1.1',
     'depends': [
-        'point_of_sale',
+        'point_of_sale','eco_bank_payments_pos'
     ],
     'data': [
         'reports/report_sale_details.xml',

@@ -208,8 +208,34 @@ class PosDailyReport(models.TransientModel):
             if r_method not in total_payment_methods:
                 total_payment_methods.append(r_method)
 
+        # get payment methods
+        payments_expected_and_real = dict()
+
+        all_payment_methods = pos_session.mapped('config_id').payment_method_ids
+        for pm in all_payment_methods:
+            if pm.journal_id.type == 'cash':
+                payments_expected_and_real[pm.id] = {
+                    'name':pm.name,
+                    'real_closing_balance':sum(pos_session.mapped("cash_register_balance_end_real")),
+                    'expected_closing_balance':sum(pos_session.mapped("cash_register_total_entry_encoding")),
+                    'difference_balance':sum(pos_session.mapped("cash_register_balance_end_real"))  - sum(pos_session.mapped("cash_register_total_entry_encoding")),
+                }
+            else:
+                expected_payments_amount = sum(self.env['pos.payment'].search([
+                    ('session_id','in',pos_session.ids),
+                    ('payment_method_id','=',pm.id)
+                ]).mapped("amount")) or 0
+                payments_expected_and_real[pm.id] = {
+                    'name':pm.name,
+                    'real_closing_balance':sum(pos_session.bank_payments_ids.mapped("counted")),
+                    'expected_closing_balance':expected_payments_amount,
+                    'difference_balance':sum(pos_session.bank_payments_ids.mapped("counted")) - expected_payments_amount,
+                }
+
+
 
         res =  {
+            'payments_expected_and_real':payments_expected_and_real,
             'company_id': self.env.company,
             'date_start': min(pos_session.mapped('start_at')),
             'date_stop': fields.Datetime.now(),
@@ -320,8 +346,26 @@ class PosDailyReport(models.TransientModel):
         worksheet.write('B' + str(summary_start_row), 'Total Net', bold)
         worksheet.write('C' + str(summary_start_row), data.get('total_net', 0))
 
+        payment_expected_and_real_start_row =summary_start_row+6
 
-        total_sales_payment_start_row =summary_start_row+6
+        worksheet.write('E' + str(payment_expected_and_real_start_row), 'Session Closing', bold)
+        worksheet.write('B' + str(payment_expected_and_real_start_row + 1), 'Payment Method', bold)
+        worksheet.write('C' + str(payment_expected_and_real_start_row + 1), 'Expected', bold)
+        worksheet.write('D' + str(payment_expected_and_real_start_row + 1), 'Counted', bold)
+        worksheet.write('E' + str(payment_expected_and_real_start_row + 1), 'Difference', bold)
+        row = payment_expected_and_real_start_row + 2
+
+        for pm_real_excpected in data.get('payments_expected_and_real'):
+            worksheet.write('B' + str(row), data.get('payments_expected_and_real')[pm_real_excpected]['name'])
+            worksheet.write('C' + str(row), data.get('payments_expected_and_real')[pm_real_excpected]['expected_closing_balance'])
+            worksheet.write('D' + str(row), data.get('payments_expected_and_real')[pm_real_excpected]['real_closing_balance'])
+            worksheet.write('E' + str(row), data.get('payments_expected_and_real')[pm_real_excpected]['difference_balance'])
+            row += 1
+
+
+
+        # Write Total Sales Payment section
+        total_sales_payment_start_row =payment_expected_and_real_start_row+6
         worksheet.write('E' + str(total_sales_payment_start_row), 'Total Sales Payment', bold)
         worksheet.write('B' + str(total_sales_payment_start_row + 1), 'Payment', bold)
         worksheet.write('C' + str(total_sales_payment_start_row + 1), 'Sales', bold)

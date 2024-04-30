@@ -27,6 +27,7 @@
             'pos_mircato_enhancements/static/src/js/order_reciept.js',
             'pos_mircato_enhancements/static/src/js/refundButton.js',
             'pos_mircato_enhancements/static/src/js/closeSessionPopup.js',
+            'pos_mircato_enhancements/static/src/js/TicketScreen.js',            
             'pos_mircato_enhancements/static/src/xml/orderReciept.xml',
             'pos_mircato_enhancements/static/src/xml/Closepopup.xml'
 

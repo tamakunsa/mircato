@@ -23,9 +23,9 @@
                                     <strong>Branch:</strong>&#160;&#160;&#160;&#160;
                                     <span t-esc="branch"/>
                                 </div>
-                                <div t-if="cahier">
+                                <div t-if="cashier">
                                     <strong>Cashier:</strong>&#160;&#160;&#160;&#160;
-                                    <span t-esc="cahier"/>
+                                    <span t-esc="cashier"/>
                                 </div>
                                 <div t-if="date_start">
                                     <strong>From:</strong>&#160;&#160;&#160;&#160;

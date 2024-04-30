@@ -150,7 +150,7 @@ class ReportSaleDetails(models.AbstractModel):
             'date_start': min(pos_session.mapped('start_at')),
             'date_stop': fields.Datetime.now(),
             'branch': pos_session.config_id.name,
-            'cahier': ", ".join(pos_session.mapped('user_id').mapped("name")) if len(pos_session.mapped('user_id')) > 1 else pos_session.user_id.name,
+            'cashier': ', '.join(set(session_pos_orders.mapped("employee_id").mapped('name'))),
             'total_sales': total_sales,
             'total_discount': total_discount,
             'net_sales': net_sales,

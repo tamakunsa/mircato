@@ -208,12 +208,14 @@ class PosDailyReport(models.TransientModel):
             if r_method not in total_payment_methods:
                 total_payment_methods.append(r_method)
 
+
         res =  {
             'company_id': self.env.company,
             'date_start': min(pos_session.mapped('start_at')),
             'date_stop': fields.Datetime.now(),
             'branch': pos_session.config_id.name,
-            'cahier': pos_session.user_id.name,
+            # 'cahier': pos_session.user_id.name,
+            'cashier': ', '.join(set(session_pos_orders.mapped("employee_id").mapped('name'))),
             'total_sales': total_sales,
             'total_discount': total_discount,
             'net_sales': net_sales,

@@ -9,6 +9,7 @@ patch(Order.prototype, {
         var orders = super.export_for_printing(...arguments);
         var canvas = document.createElement('canvas');
         JsBarcode(canvas, orders['name']);
+        console.log('ooooooooooooooooo',orders['name'])
         orders['barcode'] = canvas.toDataURL("image/png");
         return orders;
     }

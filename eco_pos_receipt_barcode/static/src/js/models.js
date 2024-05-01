@@ -12,7 +12,11 @@ patch(Order.prototype, {
         if (orders['name'].startsWith('Order ')){
             reference = orders['name'].replace('Order ','');
         }
+        if(orders['name'].includes("طلب")){
+            reference = orders['name'].replace('طلب ','');
+        }
         JsBarcode(canvas, reference);
+
         orders['barcode'] = canvas.toDataURL("image/png");
         return orders;
     }

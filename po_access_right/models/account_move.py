@@ -15,6 +15,7 @@ class AccountMove(models.Model):
 
     def action_post(self):
         res = super(AccountMove, self).action_post()
-        if not self.confirm_bill and self.move_type == 'in_invoice':
-            raise ValidationError(_('Sorry, You can not confirm this bill. Please contact your administrator.'))
+        for rec in self:
+            if not rec.confirm_bill and rec.move_type == 'in_invoice':
+                raise ValidationError(_('Sorry, You can not confirm this bill. Please contact your administrator.'))
         return res

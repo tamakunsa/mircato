@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+
+    <record id="paperformat_order_details_landscape" model="report.paperformat">
+        <field name="name">Order Details Report Landscape</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+<!--        <field name="orientation">Landscape</field>-->
+        <field name="margin_top">10</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">3</field>
+        <field name="dpi">90</field>
+    </record>
+    <record id="template_point_of_sale_report_saledetails_new" model="ir.actions.report">
+        <field name="name">POS Order Report</field>
+        <field name="model">pos.order.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">pos_order_report_details.point_of_sale_report_saledetails_new</field>
+        <field name="report_file">pos_order_report_details.point_of_sale_report_saledetails_new</field>
+        <field name="binding_type">report</field>
+        <field name="paperformat_id" eval="paperformat_order_details_landscape"/>
+
+    </record>
+
+</odoo>

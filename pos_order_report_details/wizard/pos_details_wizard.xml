@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_pos_order_report_wizard" model="ir.ui.view">
+        <field name="name">pos.order.report.form</field>
+        <field name="model">pos.order.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sales Details">
+                <group>
+                    <field name="start_date"/>
+                    <field name="end_date"/>
+                </group>
+                <group>
+                    <field name="company_ids" mode="tree" colspan="4" nolabel="1" force_save="1"/>
+                    <field name="has_many_branches" invisible="1"/>
+                    <field name="detailed_report" invisible="has_many_branches == False"/>
+                    <!-- <field name="detailed_report" attrs="{'invisible': [('has_many_branches', '=', False)]}"/> -->
+
+                    <!-- <field name="pos_config_ids" mode="tree" colspan="4" nolabel="1" attrs="{'invisible': [('has_many_branches', '=', True)]}"/> -->
+                    <field name="pos_config_ids" mode="tree" colspan="4" nolabel="1" invisible="has_many_branches == True"/>
+                </group>
+                <footer>
+                    <button name="generate_report" string="Print" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_pos_order_report" model="ir.actions.act_window">
+        <field name="name">POS Order Report</field>
+        <field name="res_model">pos.order.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_pos_order_report"
+              name="POS Order Report"
+              action="action_pos_order_report"
+              parent="point_of_sale.menu_point_rep"
+              sequence="5"/>
+
+</odoo>

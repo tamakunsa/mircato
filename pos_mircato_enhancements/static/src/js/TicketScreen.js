@@ -6,6 +6,7 @@ import { _t } from "@web/core/l10n/translation";
 
 patch(TicketScreen.prototype, {
     _getSearchFields() {
+        // re-arranging search names in pos orders searchbar
         const fields = {
             RECEIPT_NUMBER: {
                 repr: (order) => order.name,

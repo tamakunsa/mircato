@@ -6,6 +6,7 @@ import { patch } from "@web/core/utils/patch";
 
 patch(RefundButton.prototype, {
     click() {
+        // employee cannot open refund orders unless the employee has the access rights
         if (!this.pos.get_cashier().allow_refund){
             this.pos.env.services.popup.add(ErrorPopup, {
                 'title':"Access Right Error",

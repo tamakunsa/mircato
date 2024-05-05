@@ -21,6 +21,7 @@
         # 'point_of_sale.assets_prod': [
         # ],
         'point_of_sale._assets_pos': [
+            'pos_mircato_enhancements/static/src/js/navbar.js',
             'pos_mircato_enhancements/static/src/xml/partner_editor.xml',
             'pos_mircato_enhancements/static/src/js/partner_editor.js',
             'pos_mircato_enhancements/static/src/js/pos_store.js',

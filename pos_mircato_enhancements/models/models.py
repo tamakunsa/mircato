@@ -36,9 +36,6 @@ class ResPartner(models.Model):
     def search_mobile_existance(self,mobile,partner_id=None):
         domain = [('mobile','=',mobile)]
         if partner_id:
-            print('partner_id')
-            print(partner_id)
-            print(type(partner_id))
             domain.append(('id','!=',int(partner_id)))
 
 
@@ -50,14 +47,33 @@ class ResPartner(models.Model):
 class PosSession(models.Model):
     _inherit = 'pos.session'
 
+    # def get_closing_control_data(self):
+    #     res = super().get_closing_control_data()
+    #     orders = self._get_closed_orders()
+    #     #this function is responsable for getting cash control data
+    #     cash_payment_method_ids = self.payment_method_ids.filtered(lambda pm: pm.type == 'cash')
+    #     default_cash_payment_method_id = cash_payment_method_ids[0] if cash_payment_method_ids else None
+    #     other_payment_method_ids = self.payment_method_ids - default_cash_payment_method_id if default_cash_payment_method_id else self.payment_method_ids
+    #     print("-----res before----")
+    #     print(res)
+    #     res['other_payment_methods'] =  [{
+    #             'name': pm.name,
+    #             # 'amount':0,
+    #             'amount': sum(orders.payment_ids.filtered(lambda p: p.payment_method_id == pm).mapped('amount')),
+    #             'number': len(orders.payment_ids.filtered(lambda p: p.payment_method_id == pm)),
+    #             'id': pm.id,
+    #             'type': pm.type,
+    #         } for pm in other_payment_method_ids],
+    #     print("-----res after----")
+
+    #     print(res)
+
+    #     return res
 
     def _loader_params_hr_employee(self):
         res =  super(PosSession,self)._loader_params_hr_employee()
         # res['fields'].append('allow_refund')
-        print("---------res-------")
-        print(res)
         res['search_params']['fields'].append('allow_refund')
-        print(res['search_params']['fields'])
 
         return res
 

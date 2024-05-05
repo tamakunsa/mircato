@@ -36,6 +36,11 @@
         <!-- hide differnce column -->
         </xpath>
 
+         <xpath expr="//button[@t-on-click='downloadSalesReport']" position="attributes">
+                <attribute name='style'>display:none</attribute>
+        <!-- hide Daily Sales button -->
+         </xpath>
+
     </t>
 
 </templates>

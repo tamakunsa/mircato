@@ -17,6 +17,7 @@ patch(PartnerDetailsEdit.prototype, {
         this.mobileInput = useRef("Mobile");
         useEffect(
             () => {
+                // set default value for phone
                 if(!this.changes.phone){
                     this.phoneInput.el.value='+966'
                 }
@@ -40,7 +41,7 @@ patch(PartnerDetailsEdit.prototype, {
     },
 
     saveChanges() {
-
+        // making mobile required and unique through pos (python constrians have no effect in pos js so we had to code these lines )
         if ((!this.props.partner.mobile && !this.changes.mobile) || this.changes.mobile === "") {
             return this.popup.add(ErrorPopup, {
                 title: _t("A Customer Mobile Is Required"),
@@ -58,10 +59,8 @@ patch(PartnerDetailsEdit.prototype, {
                             title: _t("A Customer with this mobile already exists"),
                         });
                         return false;
-            
                     }else{
                         super.saveChanges()
-
                     }
                 })
     
@@ -76,12 +75,9 @@ patch(PartnerDetailsEdit.prototype, {
                         return false;
                     }else{
                         super.saveChanges()
-
                     }
                 })
-
             }
-
         }else{
             super.saveChanges()
         }          

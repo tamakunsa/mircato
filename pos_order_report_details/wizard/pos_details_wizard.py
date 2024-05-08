@@ -5,6 +5,8 @@ from datetime import timedelta
 
 import pytz
 from odoo import api, fields, models, _
+import xlsxwriter
+from io import BytesIO
 
 from odoo.osv.expression import AND
 
@@ -54,7 +56,7 @@ class PosOrderReportWizard(models.TransientModel):
         return res
 
     @api.model
-    def get_pos_order_details(self, date_start=False, date_stop=False, branches=False, config_ids=False, has_many_branches=False):
+    def get_pos_order_details(self, date_start=False, date_stop=False, branches=False, config_ids=False, has_many_branches=False,detailed_report=False):
         res = []
         domain = [('state', 'in', ['paid', 'invoiced', 'done'])]
 
@@ -70,7 +72,7 @@ class PosOrderReportWizard(models.TransientModel):
                 total_cash_payment = total_master_cart_payment = total_total_payment = 0
 
                 config_ids = self.env['pos.config'].search([('company_id', '=', branch.id)])
-
+                print(date_start)
                 for config_id in config_ids:
                     config_name = self.env['pos.config'].search([('id', '=', config_id.id)]).name
                     orders_ids = orders.search([('config_id', '=', config_id.id)]).filtered(
@@ -127,7 +129,7 @@ class PosOrderReportWizard(models.TransientModel):
                         vals = {
                             'cashier_ids': cashiers,
                             'branch': branch.name,
-                            'config_name': config_name if self.detailed_report else 'hide',
+                            'config_name': config_name if detailed_report else 'hide',
                             'sale_order_amount': sale_order_amount,
                             'returns_order_amount': returns_order_amount,
                             'net_sales_amount': net_sales_amount,
@@ -269,10 +271,71 @@ class PosOrderReportWizard(models.TransientModel):
 
 
     def get_resultat_pos_order_details(self):
-        resultat = self.get_pos_order_details(self.start_date, self.end_date, self.company_ids.ids, self.pos_config_ids.ids, self.has_many_branches)
+        resultat = self.get_pos_order_details(self.start_date, self.end_date, self.company_ids.ids, self.pos_config_ids.ids, self.has_many_branches,self.detailed_report)
         return resultat
 
     def generate_report(self):
         return self.env.ref('pos_order_report_details.template_point_of_sale_report_saledetails_new').report_action(self)
 
+
+
+    def print_excel_report(self):
+        url = {
+            'type': 'ir.actions.act_url',
+            'target': 'new',
+        }
+        url.update({
+                'url': '/pos/report/detail/excel_report?date_start=%(date_from)s&date_stop=%(date_stop)s&branches=%(branches)s&config_ids=%(config_ids)s&has_many_branches=%(has_many_branches)s&detailed_report=%(detailed_report)s' % {
+                    'date_from':self.start_date,
+                    'date_stop':self.end_date,
+                    'branches':','.join(str(company_id) for company_id in self.company_ids.ids),
+                    'config_ids':','.join(str(pos_config_id) for pos_config_id in self.pos_config_ids.ids),
+                    'has_many_branches':self.has_many_branches,
+                    'detailed_report':self.detailed_report,
+                }
+        })
+
+        return url
+
+
+    def generate_excel_report(self, **kwargs):
+        # Fetch data using the get_resultat_pos_order_details() function
+        data = self.get_pos_order_details(**kwargs)
+
+        # data = self.get_resultat_pos_order_details()
+
+        # Create a new XLSX workbook and add a worksheet
+        output = BytesIO()
+        workbook = xlsxwriter.Workbook(output, {'in_memory': True})
+        worksheet = workbook.add_worksheet()
+
+        # Define formats for headers and data
+        bold_format = workbook.add_format({'bold': True})
+        number_format = workbook.add_format({'num_format': '#,##0.00'})
+
+        # Write headers
+        headers = ["", "مبيعات", "مردودات", "صافي المبيعات", "ضريبة مبيعات", "ضريبة مردودات", "صافي الضريبة", "النقدية", "ماستر كارد", "الاجمالي", "الكاشير"]
+        for col, header in enumerate(headers):
+            worksheet.write(0, col, header, bold_format)
+
+        row = 1
+        for res in data:
+            worksheet.write(row, 0, res.get("config_name", ""))
+            worksheet.write(row, 1, res.get("sale_order_amount", ""), number_format)
+            worksheet.write(row, 2, res.get("returns_order_amount", ""), number_format)
+            worksheet.write(row, 3, res.get("net_sales_amount", ""), number_format)
+            worksheet.write(row, 4, res.get("sale_order_tax", ""), number_format)
+            worksheet.write(row, 5, res.get("returns_order_tax", ""), number_format)
+            worksheet.write(row, 6, res.get("net_tax_amount", ""), number_format)
+            worksheet.write(row, 7, res.get("cash_payment", ""), number_format)
+            worksheet.write(row, 8, res.get("master_cart_payment", ""), number_format)
+            worksheet.write(row, 9, res.get("total_payment", ""), number_format)
+            cashiers = ", ".join(res.get("cashier_ids", []))
+            worksheet.write(row, 10, cashiers)
+            row += 1
+
+        # Close the workbook
+        workbook.close()
+        output.seek(0)
+        return output
 

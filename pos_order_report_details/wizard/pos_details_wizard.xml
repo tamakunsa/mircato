@@ -20,7 +20,8 @@
                     <field name="pos_config_ids" mode="tree" colspan="4" nolabel="1" invisible="has_many_branches == True"/>
                 </group>
                 <footer>
-                    <button name="generate_report" string="Print" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button name="generate_report" string="Print (Pdf)" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button name="print_excel_report" string="Print (Excel)" type="object" class="btn-primary" data-hotkey="q"/>
                     <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z" />
                 </footer>
             </form>

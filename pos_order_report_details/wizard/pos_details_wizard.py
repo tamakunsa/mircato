@@ -366,7 +366,6 @@ class PosOrderReportWizard(models.TransientModel):
                 worksheet.write(row, 10, cashiers,number_sub_total_format)
                 row += 1
 
-            # if  res["config_name"] != "Totals":
 
         # Close the workbook
         workbook.close()

@@ -25,8 +25,8 @@ class PosReportDetailsController(Controller):
             ]
         )
         post['branches'] = [int(s) for s in post['branches'].split(',')]
-        post['date_start'] = datetime_object = datetime.strptime(post['date_start'], "%Y-%m-%d").date()
-        post['date_stop'] = datetime_object = datetime.strptime(post['date_stop'], "%Y-%m-%d").date()
+        post['date_start'] = datetime.strptime(post['date_start'], "%Y-%m-%d").date()
+        post['date_stop']  = datetime.strptime(post['date_stop'], "%Y-%m-%d").date()
         post['detailed_report'] = True if post['detailed_report']=='True' else False
         post['has_many_branches'] = True if post['has_many_branches']=='True' else False
         output = request.env['pos.order.report.wizard'].generate_excel_report(**post)

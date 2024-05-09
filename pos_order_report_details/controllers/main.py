@@ -24,17 +24,12 @@ class PosReportDetailsController(Controller):
                 ('Content-Disposition', content_disposition('pos_details_report'+ time + '.xlsx'))
             ]
         )
-        # print(post)
         post['branches'] = [int(s) for s in post['branches'].split(',')]
         post['date_start'] = datetime_object = datetime.strptime(post['date_start'], "%Y-%m-%d").date()
         post['date_stop'] = datetime_object = datetime.strptime(post['date_stop'], "%Y-%m-%d").date()
-        # ids = [int(s) for s in list_ids.split(',')]
-        # print(post)
-
-        # if date_start and date_stop:
+        post['detailed_report'] = True if post['detailed_report']=='True' else False
+        post['has_many_branches'] = True if post['has_many_branches']=='True' else False
         output = request.env['pos.order.report.wizard'].generate_excel_report(**post)
-        # else:
-        #     output = request.env['pos.order.report.wizard'].generate_excel_report(ids)
 
         response.stream.write(output.read())
         output.close()

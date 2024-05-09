@@ -312,6 +312,8 @@ class PosOrderReportWizard(models.TransientModel):
         # Define formats for headers and data
         bold_format = workbook.add_format({'bold': True})
         number_format = workbook.add_format({'num_format': '#,##0.00'})
+        number_totals_format = workbook.add_format({'num_format': '#,##0.00','bg_color': '#888888'})
+        number_sub_total_format = workbook.add_format({'num_format': '#,##0.00','bg_color':'#EEEEEE'})
 
         # Write headers
         headers = ["", "مبيعات", "مردودات", "صافي المبيعات", "ضريبة مبيعات", "ضريبة مردودات", "صافي الضريبة", "النقدية", "ماستر كارد", "الاجمالي", "الكاشير"]
@@ -320,19 +322,51 @@ class PosOrderReportWizard(models.TransientModel):
 
         row = 1
         for res in data:
-            worksheet.write(row, 0, res.get("config_name", ""))
-            worksheet.write(row, 1, res.get("sale_order_amount", ""), number_format)
-            worksheet.write(row, 2, res.get("returns_order_amount", ""), number_format)
-            worksheet.write(row, 3, res.get("net_sales_amount", ""), number_format)
-            worksheet.write(row, 4, res.get("sale_order_tax", ""), number_format)
-            worksheet.write(row, 5, res.get("returns_order_tax", ""), number_format)
-            worksheet.write(row, 6, res.get("net_tax_amount", ""), number_format)
-            worksheet.write(row, 7, res.get("cash_payment", ""), number_format)
-            worksheet.write(row, 8, res.get("master_cart_payment", ""), number_format)
-            worksheet.write(row, 9, res.get("total_payment", ""), number_format)
-            cashiers = ", ".join(res.get("cashier_ids", []))
-            worksheet.write(row, 10, cashiers)
-            row += 1
+            worksheet.set_column(row, 0, 35)
+            if res['config_name'] == "Totals":
+                worksheet.write(row, 0, res.get("config_name", ""),number_totals_format)
+                worksheet.write(row, 1, res.get("sale_order_amount", ""), number_totals_format)
+                worksheet.write(row, 2, res.get("returns_order_amount", ""), number_totals_format)
+                worksheet.write(row, 3, res.get("net_sales_amount", ""), number_totals_format)
+                worksheet.write(row, 4, res.get("sale_order_tax", ""), number_totals_format)
+                worksheet.write(row, 5, res.get("returns_order_tax", ""), number_totals_format)
+                worksheet.write(row, 6, res.get("net_tax_amount", ""), number_totals_format)
+                worksheet.write(row, 7, res.get("cash_payment", ""), number_totals_format)
+                worksheet.write(row, 8, res.get("master_cart_payment", ""), number_totals_format)
+                worksheet.write(row, 9, res.get("total_payment", ""), number_totals_format)
+                row += 1
+                
+            if res["config_name"] != "sub_totals" and res["config_name"] != "hide" and res["config_name"] != "Totals":
+                worksheet.write(row, 0, res.get("config_name", ""))
+                worksheet.write(row, 1, res.get("sale_order_amount", ""), number_format)
+                worksheet.write(row, 2, res.get("returns_order_amount", ""), number_format)
+                worksheet.write(row, 3, res.get("net_sales_amount", ""), number_format)
+                worksheet.write(row, 4, res.get("sale_order_tax", ""), number_format)
+                worksheet.write(row, 5, res.get("returns_order_tax", ""), number_format)
+                worksheet.write(row, 6, res.get("net_tax_amount", ""), number_format)
+                worksheet.write(row, 7, res.get("cash_payment", ""), number_format)
+                worksheet.write(row, 8, res.get("master_cart_payment", ""), number_format)
+                worksheet.write(row, 9, res.get("total_payment", ""), number_format)
+                cashiers = ", ".join(res.get("cashier_ids", []))
+                worksheet.write(row, 10, cashiers)
+                row += 1
+
+            if res["config_name"] == "sub_totals":
+                worksheet.write(row, 0, res.get("branch_name", ""),number_sub_total_format)
+                worksheet.write(row, 1, res.get("sale_order_amount", ""), number_sub_total_format)
+                worksheet.write(row, 2, res.get("returns_order_amount", ""), number_sub_total_format)
+                worksheet.write(row, 3, res.get("net_sales_amount", ""), number_sub_total_format)
+                worksheet.write(row, 4, res.get("sale_order_tax", ""), number_sub_total_format)
+                worksheet.write(row, 5, res.get("returns_order_tax", ""), number_sub_total_format)
+                worksheet.write(row, 6, res.get("net_tax_amount", ""), number_sub_total_format)
+                worksheet.write(row, 7, res.get("cash_payment", ""), number_sub_total_format)
+                worksheet.write(row, 8, res.get("master_cart_payment", ""), number_sub_total_format)
+                worksheet.write(row, 9, res.get("total_payment", ""), number_sub_total_format)
+                cashiers = ", ".join(res.get("cashier_ids", []))
+                worksheet.write(row, 10, cashiers,number_sub_total_format)
+                row += 1
+
+            # if  res["config_name"] != "Totals":
 
         # Close the workbook
         workbook.close()

@@ -13,7 +13,7 @@
                 <xpath expr="//field[@name='detailed_type']" position="after">
                     <!-- <field name="barcode_type" widget="selection" string="Barcode Type"/> -->
                     <field name="type_id"/>
-                    <!--                            <field name="vendor_id"/>-->
+                                               <field name="vendor_id"/>
                     <field name="kind_id"/>
                     <field name="price_id"/>
                     <field name="status" invisible="1"/>

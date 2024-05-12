@@ -22,7 +22,7 @@ class KindBarcode(models.Model):
     _description = 'kind Barcode'
 
     name = fields.Char(string='Name', required=True)
-    code = fields.Char(string='Code', size=3)
+    code = fields.Char(string='Code', size=5)
 
 
 class PriceBarcode(models.Model):

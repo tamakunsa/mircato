@@ -41,8 +41,9 @@ class ProductTemplate(models.Model):
     def generate_barcode(self):
         sequence_parameter_prefix = 'product.barcode.sequence.'
         for record in self:
-            base_barcode = '{}{}{}'.format(
+            base_barcode = '{}{}{}{}'.format(
                 record.type_id.code or '',
+                record.vendor_id.code or '',
                 record.kind_id.code or '',
                 record.price_id.code or ''
             )
@@ -51,10 +52,7 @@ class ProductTemplate(models.Model):
 
             sequence = int(self.env['ir.config_parameter'].sudo().get_param(sequence_key, default=1))
 
-            print(base_barcode)
-            print(sequence)
             record.barcode = '{}{:d}'.format(base_barcode, sequence)
-            print(record.barcode)
 
             self.env['ir.config_parameter'].sudo().set_param(sequence_key, sequence + 1)
             record.status = 'generated'

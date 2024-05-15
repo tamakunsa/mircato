@@ -25,6 +25,7 @@ class PosReportDetailsController(Controller):
             ]
         )
         post['branches'] = [int(s) for s in post['branches'].split(',')]
+        post['config_ids'] = [int(s) for s in post['config_ids'].split(',')]
         post['date_start'] = datetime.strptime(post['date_start'], "%Y-%m-%d").date()
         post['date_stop']  = datetime.strptime(post['date_stop'], "%Y-%m-%d").date()
         post['detailed_report'] = True if post['detailed_report']=='True' else False

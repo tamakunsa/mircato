@@ -14,25 +14,33 @@
                                 </strong>
                             </h6>
                             <h6>
-                                <strong>X OUT STATUS REPORT</strong>
+                                <!--                                <strong>X OUT STATUS REPORT</strong>-->
+                                <strong>تـقـريـر جـلـسـة الكـاشـير</strong>
                             </h6>
                         </div>
                         <span>
                             <h6>
                                 <div t-if="branch">
-                                    <strong>Branch:</strong>&#160;&#160;&#160;&#160;
+                                    <!--                                    <strong>Branch:</strong>-->
+                                    <strong>اسـم الفـرع</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <span t-esc="branch"/>
                                 </div>
                                 <div t-if="cashier">
-                                    <strong>Cashier:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Cashier:</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <span t-esc="cashier"/>
                                 </div>
                                 <div t-if="date_start">
-                                    <strong>From:</strong>&#160;&#160;&#160;&#160;
+                                    <!--                                    <strong>From:</strong>-->
+                                    <strong>تـاريـخ فـتـح الجـلـسـة</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <t t-esc="date_start" t-options="{'widget': 'datetime'}"/>
                                 </div>
                                 <div t-if="date_stop">
-                                    <strong>To:</strong>&#160;&#160;&#160;&#160;
+                                    <!--                                    <strong>To:</strong>-->
+                                    <strong>تـاريـخ غـلـق الجـلسـة</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <t t-esc="date_stop" t-options="{'widget': 'datetime'}"/>
                                 </div>
                             </h6>
@@ -40,29 +48,40 @@
                         <br/>
                         <div class="text-center">
                             <h6>
-                                <strong>SALES</strong>
+                                <!--                                <strong>SALES</strong>-->
+                                <strong>المـبـيـعـات</strong>
                             </h6>
                         </div>
                         <span>
                             <h6>
                                 <div>
-                                    <strong>Total Sales:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Total Sales:</strong>
+                                    <strong>إجمـالـى المـبـيعات</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_sales,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Total Discount:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Total Discount:</strong>
+                                    <strong>إجمـالـى الخـصومـات</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_discount,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Net Sales:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Net Sales:</strong>
+                                    <strong>صـافـى المبـيـعـات</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <t t-esc="round(net_sales,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Invoice Counts:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Invoice Counts:</strong>
+                                    <strong>عـدد الفـواتـيـر</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <t t-esc="invoice_count"/>
                                 </div>
                                 <div>
-                                    <strong>Cancel Orders:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Cancel Orders:</strong>
+                                    <strong>الطـلـبـات المـلـغـاة</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <t t-esc="cancel_orders"/>
                                 </div>
                             </h6>
@@ -70,25 +89,34 @@
                         <br/>
                         <div class="text-center">
                             <h6>
-                                <strong>Returns</strong>
+                                <!--                                <strong>Returns</strong>-->
+                                <strong>المـردودات</strong>
                             </h6>
                         </div>
                         <span>
                             <h6>
                                 <div>
-                                    <strong>Total Returns:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Total Returns:</strong>
+                                    <strong>إجمـالـى المردودات</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_return,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Total Discount:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Total Discount:</strong>
+                                    <strong>إجمـالـى الخـصـومـات</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_return_discount,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Net Returns:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Net Returns:</strong>
+                                    <strong>صـافـى المردودات</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <t t-esc="round(net_return,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Return Counts:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Return Counts:</strong>
+                                    <strong>عدد فـواتـيـر المردود</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <t t-esc="returns_count"/>
                                 </div>
                             </h6>
@@ -97,30 +125,38 @@
                         <div class="text-center">
                             <h6>
                                 <strong>Summary</strong>
+                                <strong>مـلـخـص</strong>
                             </h6>
                         </div>
                         <span>
                             <h6>
                                 <div>
-                                    <strong>Total Net:</strong>&#160;&#160;&#160;&#160;
+                                    <strong>Total Net:</strong>
+                                    <strong>صـافـى المـبـيـعات</strong>
+                                    &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_net,3)"/>
                                 </div>
                             </h6>
                         </span>
                         <br/>
-                        
+
                         <div class="text-center">
                             <h6>
                                 <strong>Session Closing</strong>
+                                <strong>غـلـق الجـلـسة</strong>
                             </h6>
                         </div>
                         <!-- <t t-set="payment_method_expected_real" t-value=""/> -->
                         <table style="width: 60%;border:1px solid black;">
                             <tr>
-                                <th style="border:1px solid black;" class="text-center">Payment Method</th>
-                                <th style="border:1px solid black;" class="text-center">Expected</th>
-                                <th style="border:1px solid black;" class="text-center">Counted</th>
-                                <th style="border:1px solid black;" class="text-center">Difference</th>
+                                <!--                                <th style="border:1px solid black;" class="text-center">Payment Method</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Expected</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Counted</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Difference</th>-->
+                                <th style="border:1px solid black;" class="text-center">طـرق الدفـع</th>
+                                <th style="border:1px solid black;" class="text-center">تقرير السيستم</th>
+                                <th style="border:1px solid black;" class="text-center">تقرير الموظف</th>
+                                <th style="border:1px solid black;" class="text-center">الفـرق</th>
                             </tr>
                             <t t-foreach="payments_expected_and_real" t-as="pm_real_excpected">
                                 <tr>
@@ -131,19 +167,22 @@
                                     </td>
                                     <td style="border:1px solid black;" class="text-center">
                                         <strong>
-                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['expected_closing_balance']"/>:
+                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['expected_closing_balance']"/>
+                                            :
                                         </strong>
                                     </td>
 
                                     <td style="border:1px solid black;" class="text-center">
                                         <strong>
-                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['real_closing_balance']"/>:
+                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['real_closing_balance']"/>
+                                            :
                                         </strong>
                                     </td>
 
                                     <td style="border:1px solid black;" class="text-center">
                                         <strong>
-                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['difference_balance']"/>:
+                                            <span t-esc="payments_expected_and_real[pm_real_excpected]['difference_balance']"/>
+                                            :
                                         </strong>
                                     </td>
 
@@ -154,10 +193,10 @@
                         <br/>
 
 
-
                         <div class="text-center">
                             <h6>
-                                <strong>Total Sales Payment</strong>
+                                <!--                                <strong>Total Sales Payment</strong>-->
+                                <strong>إجمـالـى المدفـوعـات</strong>
                             </h6>
                         </div>
                         <t t-set="payment_method" t-value=""/>
@@ -203,7 +242,8 @@
                         <br/>
                         <div class="text-center">
                             <h6>
-                                <strong>Total Returns Payment</strong>
+                                <!--                                <strong>Total Returns Payment</strong>-->
+                                <strong>إجمـالـى المـردودات</strong>
                             </h6>
                         </div>
                         <t t-set="return_payment_method" t-value=""/>

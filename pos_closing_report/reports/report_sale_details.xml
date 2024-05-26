@@ -27,6 +27,7 @@
                                     <span t-esc="branch"/>
                                 </div>
                                 <div t-if="cashier">
+                                    <strong>اسـم الكاشير</strong>
                                     <strong>Cashier:</strong>
                                     &#160;&#160;&#160;&#160;
                                     <span t-esc="cashier"/>
@@ -55,31 +56,31 @@
                         <span>
                             <h6>
                                 <div>
-                                    <strong>Total Sales:</strong>
+                                    <!--                                    <strong>Total Sales:</strong>-->
                                     <strong>إجمـالـى المـبـيعات</strong>
                                     &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_sales,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Total Discount:</strong>
+                                    <!--                                    <strong>Total Discount:</strong>-->
                                     <strong>إجمـالـى الخـصومـات</strong>
                                     &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_discount,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Net Sales:</strong>
+                                    <!--                                    <strong>Net Sales:</strong>-->
                                     <strong>صـافـى المبـيـعـات</strong>
                                     &#160;&#160;&#160;&#160;
                                     <t t-esc="round(net_sales,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Invoice Counts:</strong>
+                                    <!--                                    <strong>Invoice Counts:</strong>-->
                                     <strong>عـدد الفـواتـيـر</strong>
                                     &#160;&#160;&#160;&#160;
                                     <t t-esc="invoice_count"/>
                                 </div>
                                 <div>
-                                    <strong>Cancel Orders:</strong>
+                                    <!--                                    <strong>Cancel Orders:</strong>-->
                                     <strong>الطـلـبـات المـلـغـاة</strong>
                                     &#160;&#160;&#160;&#160;
                                     <t t-esc="cancel_orders"/>
@@ -96,25 +97,25 @@
                         <span>
                             <h6>
                                 <div>
-                                    <strong>Total Returns:</strong>
+                                    <!--                                    <strong>Total Returns:</strong>-->
                                     <strong>إجمـالـى المردودات</strong>
                                     &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_return,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Total Discount:</strong>
+                                    <!--                                    <strong>Total Discount:</strong>-->
                                     <strong>إجمـالـى الخـصـومـات</strong>
                                     &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_return_discount,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Net Returns:</strong>
+                                    <!--                                    <strong>Net Returns:</strong>-->
                                     <strong>صـافـى المردودات</strong>
                                     &#160;&#160;&#160;&#160;
                                     <t t-esc="round(net_return,3)"/>
                                 </div>
                                 <div>
-                                    <strong>Return Counts:</strong>
+                                    <!--                                    <strong>Return Counts:</strong>-->
                                     <strong>عدد فـواتـيـر المردود</strong>
                                     &#160;&#160;&#160;&#160;
                                     <t t-esc="returns_count"/>
@@ -124,14 +125,14 @@
                         <br/>
                         <div class="text-center">
                             <h6>
-                                <strong>Summary</strong>
+                                <!--                                <strong>Summary</strong>-->
                                 <strong>مـلـخـص</strong>
                             </h6>
                         </div>
                         <span>
                             <h6>
                                 <div>
-                                    <strong>Total Net:</strong>
+                                    <!--                                    <strong>Total Net:</strong>-->
                                     <strong>صـافـى المـبـيـعات</strong>
                                     &#160;&#160;&#160;&#160;
                                     <span t-esc="round(total_net,3)"/>
@@ -142,7 +143,7 @@
 
                         <div class="text-center">
                             <h6>
-                                <strong>Session Closing</strong>
+                                <!--                                <strong>Session Closing</strong>-->
                                 <strong>غـلـق الجـلـسة</strong>
                             </h6>
                         </div>
@@ -202,10 +203,14 @@
                         <t t-set="payment_method" t-value=""/>
                         <table style="width: 60%;border:1px solid black;">
                             <tr>
-                                <th style="border:1px solid black;" class="text-center">Payment</th>
-                                <th style="border:1px solid black;" class="text-center">Sales</th>
-                                <th style="border:1px solid black;" class="text-center">Disc</th>
-                                <th style="border:1px solid black;" class="text-center">Count</th>
+                                <!--                                <th style="border:1px solid black;" class="text-center">Payment</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Sales</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Disc</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Count</th>-->
+                                <th style="border:1px solid black;" class="text-center">طريقة الدفع</th>
+                                <th style="border:1px solid black;" class="text-center">مبيعات</th>
+                                <th style="border:1px solid black;" class="text-center">خصم</th>
+                                <th style="border:1px solid black;" class="text-center">العدد</th>
                             </tr>
                             <t t-foreach="payment_methods" t-as="pm">
                                 <tr>
@@ -249,9 +254,12 @@
                         <t t-set="return_payment_method" t-value=""/>
                         <table style="width: 60%;border:1px solid black;">
                             <tr>
-                                <th style="border:1px solid black;" class="text-center">Payment</th>
-                                <th style="border:1px solid black;" class="text-center">Returns</th>
-                                <th style="border:1px solid black;" class="text-center">Count</th>
+                                <!--                                <th style="border:1px solid black;" class="text-center">Payment</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Returns</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Count</th>-->
+                                <th style="border:1px solid black;" class="text-center">طريقة الدفع</th>
+                                <th style="border:1px solid black;" class="text-center">المردودات</th>
+                                <th style="border:1px solid black;" class="text-center">العدد</th>
                             </tr>
                             <t t-foreach="return_payment_methods" t-as="rpm">
                                 <tr>
@@ -281,16 +289,21 @@
                         <br/>
                         <div class="text-center">
                             <h6>
-                                <strong>Transaction Summary</strong>
+                                <!--                                <strong>Transaction Summary</strong>-->
+                                <strong>مـلـخـص الحـركـات</strong>
                             </h6>
                         </div>
                         <t t-set="total_payment_method" t-value=""/>
                         <table style="width: 60%;border:1px solid black;">
                             <tr>
-                                <th style="border:1px solid black;" class="text-center">Payment</th>
-                                <th style="border:1px solid black;" class="text-center">Sales</th>
-                                <th style="border:1px solid black;" class="text-center">Disc</th>
-                                <th style="border:1px solid black;" class="text-center">Net</th>
+                                <!--                                <th style="border:1px solid black;" class="text-center">Payment</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Sales</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Disc</th>-->
+                                <!--                                <th style="border:1px solid black;" class="text-center">Net</th>-->
+                                <th style="border:1px solid black;" class="text-center">طريقة الدفع</th>
+                                <th style="border:1px solid black;" class="text-center">المبيعات</th>
+                                <th style="border:1px solid black;" class="text-center">الخصم</th>
+                                <th style="border:1px solid black;" class="text-center">الصافى</th>
                             </tr>
                             <t t-foreach="total_payment_methods" t-as="tpm">
                                 <tr>
@@ -324,7 +337,8 @@
                                 </tr>
                             </t>
                             <tr>
-                                <th style="border:1px solid black;" class="text-center">TOTAL:</th>
+<!--                                <th style="border:1px solid black;" class="text-center">TOTAL:</th>-->
+                                <th style="border:1px solid black;" class="text-center">الإجمالى</th>
                                 <td style="border:1px solid black;" class="text-center">
                                     <span t-esc="round(t_total_sales, 4)"/>00
                                 </td>
